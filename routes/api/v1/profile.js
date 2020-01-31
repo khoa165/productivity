@@ -9,9 +9,6 @@ const verifyURLs = require('../../../middleware/verifyURLs');
 // Validation.
 const { check, validationResult } = require('express-validator');
 
-// Private data configurations.
-const config = require('config');
-
 // Link User and Profile model.
 const User = require('../../../models/User');
 const Profile = require('../../../models/Profile');
