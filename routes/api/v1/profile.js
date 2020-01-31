@@ -154,9 +154,12 @@ router.post(
     if (twitter) profileFields.social.twitter = twitter;
     if (instagram) profileFields.social.instagram = instagram;
 
+    // Profile last updated at.
+    profileFields.date = new Date();
+
     try {
       let profile = await Profile.findOneAndUpdate(
-        // First parameter is for filter, in this case use user id to filter corresponding profile.
+        // First parameter is for filter, in this case use username to filter corresponding profile.
         // Second parameter is for document data.
         // Third parameter is options.
         // Set new to true to return document after update.
@@ -174,5 +177,38 @@ router.post(
     }
   }
 );
+
+// @route     GET /profile/:username
+// @desc      Get profile by username.
+// @access    Public
+router.get('/:username', async (req, res) => {
+  try {
+    // Get user corresponding to username.
+    const user = await User.findOne({
+      username: req.params.username
+    });
+
+    // Check if user with given username exists.
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found!' });
+    }
+
+    // Get profile corresponding to user's id. Populate name and avatar from User model.
+    const profile = await Profile.findOne({
+      user: user.id
+    }).populate('user', ['avatar', 'created_at']);
+
+    // Check and return profile if exists.
+    if (!profile) {
+      return res.status(404).json({ msg: 'Profile not found!' });
+    }
+    return res.status(200).json(profile);
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .send('Unexpected server error happened. Please try again later!');
+  }
+});
 
 module.exports = router;
