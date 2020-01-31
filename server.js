@@ -12,9 +12,10 @@ app.get('/', (req, res) => res.send('API Running'));
 
 // Define routes.
 const API = 'api/v1';
-app.use(`/${API}/auth`, require(`./routes/${API}/auth`));
-app.use(`/${API}/users`, require(`./routes/${API}/users`));
-app.use(`/${API}/profile`, require(`./routes/${API}/profile`));
+app.use(`/auth`, require(`./routes/${API}/auth`));
+app.use(`/users`, require(`./routes/${API}/users`));
+app.use(`/profile`, require(`./routes/${API}/profile`));
+app.use(`/tasks`, require(`./routes/${API}/tasks`));
 
 // Listening to app.
 const PORT = process.env.PORT || 5000;

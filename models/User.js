@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-// Link TaskList schema.
-const { TaskListSchema } = require('./TaskList');
-
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -36,6 +33,4 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const User = mongoose.model('user', UserSchema);
-
-module.exports = { User, UserSchema };
+module.exports = User = mongoose.model('user', UserSchema);

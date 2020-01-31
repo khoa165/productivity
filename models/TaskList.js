@@ -1,37 +1,25 @@
 const mongoose = require('mongoose');
 
-// Link Task schema.
-const { TaskSchema } = require('./Task');
-
 const TaskListSchema = new mongoose.Schema({
   // Every task list has an author/owner.
   author: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user'
-    },
-    name: String
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
   },
 
   // Every task list may have several collaborators.
   collaborators: [
     {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
-      },
-      name: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user'
     }
   ],
 
   // Every task list may have several subscribers.
   subscribers: [
     {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
-      },
-      name: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user'
     }
   ],
 
@@ -56,7 +44,6 @@ const TaskListSchema = new mongoose.Schema({
   },
   link: String,
   deadline: Date,
-  tag: [String],
 
   // Task list created.
   created_at: {
@@ -70,6 +57,4 @@ const TaskListSchema = new mongoose.Schema({
   }
 });
 
-const TaskList = mongoose.model('task_list', TaskListSchema);
-
-module.exports = { TaskList, TaskListSchema };
+module.exports = TaskList = mongoose.model('task_list', TaskListSchema);

@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
+  // Every task has an author/owner.
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  },
+
   // Every task belongs to one or more task list.
-  task_lists: [
+  tasklists: [
     {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'task_list'
-      },
-      name: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'tasklist'
     }
   ],
 
@@ -17,17 +20,12 @@ const TaskSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  completed: {
-    type: Boolean,
-    default: false
-  },
   stage: {
     type: String,
-    required: true
+    enum: ['New', 'Pending', 'Done', 'Cancelled']
   },
   deadline: Date,
   link: String,
-  tag: [String],
 
   // Task created.
   created_at: {
@@ -41,6 +39,4 @@ const TaskSchema = new mongoose.Schema({
   }
 });
 
-const Task = mongoose.model('task', TaskSchema);
-
-module.exports = { Task, TaskSchema };
+module.exports = Task = mongoose.model('task', TaskSchema);
