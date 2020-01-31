@@ -26,12 +26,10 @@ const ProfileSchema = new mongoose.Schema({
   lat: Number,
   lng: Number,
   company: String,
+  bio: String,
 
   // Detailed info: skills, experiences, education.
-  skills: {
-    type: [String],
-    required: true
-  },
+  skills: [String],
   experiences: [
     {
       title: {
