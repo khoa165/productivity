@@ -16,7 +16,7 @@ const config = require('config');
 const gravatar = require('gravatar');
 
 // Link User model.
-const { User } = require('../../../models/User');
+const User = require('../../../models/User');
 
 // @route     POST api/users
 // @desc      Register user

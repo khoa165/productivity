@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-// Link Task schema.
-const { TaskSchema } = require('./Task');
-
 const TaskListSchema = new mongoose.Schema({
   // Every task list has an author/owner.
   author: {
@@ -70,6 +67,4 @@ const TaskListSchema = new mongoose.Schema({
   }
 });
 
-const TaskList = mongoose.model('task_list', TaskListSchema);
-
-module.exports = { TaskList, TaskListSchema };
+module.exports = TaskList = mongoose.model('task_list', TaskListSchema);
