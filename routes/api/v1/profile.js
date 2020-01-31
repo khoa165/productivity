@@ -131,7 +131,7 @@ router.post(
     // Build profile object.
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (visible) profileFields.visible = visible;
+    if (visible !== undefined) profileFields.visible = visible;
     if (first_name) profileFields.first_name = first_name;
     if (last_name) profileFields.last_name = last_name;
     if (location) profileFields.location = location;
@@ -198,8 +198,8 @@ router.get('/:username', async (req, res) => {
       user: user.id
     }).populate('user', ['avatar', 'created_at']);
 
-    // Check and return profile if exists.
-    if (!profile) {
+    // Check and return profile only if exists and visible set to true.
+    if (!profile || !profile.visible) {
       return res.status(404).json({ msg: 'Profile not found!' });
     }
     return res.status(200).json(profile);
