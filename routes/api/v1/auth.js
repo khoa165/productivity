@@ -2,8 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
-// Authentication.
+// Middleware.
 const auth = require('../../../middleware/auth');
+
+// Authentication.
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -39,8 +41,12 @@ router.post(
   '/',
   [
     // Data validations.
-    check('credential', 'Email or username is required!').exists(),
-    check('password', 'Password is required!').exists()
+    check('credential', 'Email or username is required!')
+      .not()
+      .isEmpty(),
+    check('password', 'Password is required!')
+      .not()
+      .isEmpty()
   ],
   async (req, res) => {
     // Check for errors.
