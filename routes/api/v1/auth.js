@@ -14,7 +14,7 @@ const { check, validationResult } = require('express-validator');
 const config = require('config');
 
 // Link User model.
-const { User } = require('../../../models/User');
+const User = require('../../../models/User');
 
 // @route     GET api/auth
 // @desc      Get authenticated user.
