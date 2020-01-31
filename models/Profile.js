@@ -26,12 +26,10 @@ const ProfileSchema = new mongoose.Schema({
   lat: Number,
   lng: Number,
   company: String,
+  bio: String,
 
   // Detailed info: skills, experiences, education.
-  skills: {
-    type: [String],
-    required: true
-  },
+  skills: [String],
   experiences: [
     {
       title: {
@@ -95,6 +93,4 @@ const ProfileSchema = new mongoose.Schema({
   }
 });
 
-const Profile = mongoose.model('profile', ProfileSchema);
-
-module.exports = { Profile, ProfileSchema };
+module.exports = Profile = mongoose.model('profile', ProfileSchema);
