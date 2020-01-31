@@ -211,4 +211,25 @@ router.get('/:username', async (req, res) => {
   }
 });
 
+// @route     DELETE /profile
+// @desc      Delete profile, user & other data.
+// @access    Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    // Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    return res.status(200).json({
+      msg: 'Account deleted successfully. We are sad to see you go!'
+    });
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .send('Unexpected server error happened. Please try again later!');
+  }
+});
+
 module.exports = router;
