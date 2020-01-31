@@ -16,7 +16,7 @@ const config = require('config');
 // Link User model.
 const User = require('../../../models/User');
 
-// @route     GET api/auth
+// @route     GET /auth
 // @desc      Get authenticated user.
 // @access    Public
 router.get('/', auth, async (req, res) => {
@@ -32,14 +32,14 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route     POST api/auth
+// @route     POST /auth
 // @desc      Authenticate user & get token.
 // @access    Public
 router.post(
   '/',
   [
     // Data validations.
-    check('email', 'Please enter a valid email!').isEmail(),
+    check('credential', 'Email or username is required!').exists(),
     check('password', 'Password is required!').exists()
   ],
   async (req, res) => {
@@ -50,15 +50,18 @@ router.post(
     }
 
     // Destructuring data from request body.
-    const { email, password } = req.body;
+    const { credential, password } = req.body;
 
     try {
-      // Check if user exists (check if email exists).
-      let user = await User.findOne({ email });
+      // Check if user exists (check if email/username exists).
+      let user = await User.findOne({ email: credential });
       if (!user) {
-        return res.status(400).json({
-          errors: [{ msg: 'Invalid credentials! Please try again!' }]
-        });
+        user = await User.findOne({ username: credential });
+        if (!user) {
+          return res.status(400).json({
+            errors: [{ msg: 'Invalid credentials! Please try again!' }]
+          });
+        }
       }
 
       // Check if password matches.
@@ -81,12 +84,12 @@ router.post(
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
-          res.status(200).json({ token: token });
+          return res.status(200).json({ token: token });
         }
       );
     } catch (err) {
       console.error(err.message);
-      res
+      return res
         .status(500)
         .send('Unexpected server error happened. Please try again later!');
     }
