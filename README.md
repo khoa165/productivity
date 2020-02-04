@@ -15,4 +15,9 @@
 
 ---
 
+Implemented:
+[x] API routes for authentication (register, login).
+[x] API routes for profile builder.
+[x] API routes for todo tasks.
+
 Available features:
