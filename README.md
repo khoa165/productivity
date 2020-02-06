@@ -21,3 +21,4 @@ Implemented:
 - [x] API routes for todo tasks.
 
 Available features:
+- [x] Users can create an account, login and logout.
