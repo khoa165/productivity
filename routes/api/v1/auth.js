@@ -13,7 +13,8 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 // Private data configurations.
-const config = require('config');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Link User model.
 const User = require('../../../models/User');
@@ -86,7 +87,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWT_PRIVATE_KEY,
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
