@@ -4,6 +4,7 @@
   "description": "Productivity app",
   "main": "server.js",
   "scripts": {
+    "test": "mocha ./test --recursive",
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
@@ -21,7 +22,7 @@
   "homepage": "https://github.com/khoa165/productivity#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.2.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.3.1",
     "gravatar": "^1.8.0",
@@ -29,6 +30,9 @@
     "mongoose": "^5.8.10"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "chai": "^4.2.0",
+    "concurrently": "^5.1.0",
+    "mocha": "^7.1.0",
+    "nodemon": "^2.0.2"
   }
 }

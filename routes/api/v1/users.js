@@ -10,7 +10,8 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 // Private data configurations.
-const config = require('config');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Avatar from email.
 const gravatar = require('gravatar');
@@ -94,7 +95,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWT_PRIVATE_KEY,
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
