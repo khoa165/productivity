@@ -10,20 +10,23 @@ before(done => {
   mongoose.connection
     .once('open', () => {
       console.log('Test database connected...');
-      mongoose.connection.db.dropDatabase('users', () => {
+      mongoose.connection.db.dropDatabase(() => {
+        console.log('Test database reset...');
         done();
       });
     })
-    .on('error', error => {
-      console.warn('Warning', error);
+    .on('error', err => {
+      console.log(err);
     });
 });
 
 beforeEach(done => {
-  mongoose.connection.db.dropCollection('users', () => {
+  mongoose.connection.dropCollection('users', () => {
     done();
   });
 });
+
+afterEach(() => {});
 
 after(() => {
   console.log('Finish testing!');
