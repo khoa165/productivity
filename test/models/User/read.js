@@ -24,7 +24,7 @@ module.exports = read = () => {
       Promise.all([cat.save(), dog.save(), bird.save()]).then(() => done());
     });
 
-    it('should do sth', done => {
+    it('should find all users with specified username', done => {
       User.find({ username: 'cutecat' })
         .then(users => {
           expect(users.length).to.equal(1);
