@@ -45,6 +45,10 @@ module.exports = create = () => {
           expect(user)
             .to.have.property('email')
             .to.equal('khoa@gmail.com');
+          expect(user).to.have.property('_id');
+          expect(user).to.have.property('avatar');
+          expect(user).to.have.property('created_at');
+          expect(user).to.have.property('updated_at');
           expect(user).to.have.property('admin').to.be.false;
           User.countDocuments({}, (_err, count) => {
             expect(count).to.equal(1);
