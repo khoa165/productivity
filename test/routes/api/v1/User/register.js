@@ -4,7 +4,7 @@ const app = require('../../../../../server');
 
 module.exports = register = () => {
   describe('POST /users', () => {
-    it('should return token for valid username, email, password', done => {
+    it('should return token for valid input', done => {
       const user = {
         username: 'khoa165',
         email: 'khoa@gmail.com',
@@ -16,6 +16,7 @@ module.exports = register = () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .end((err, res) => {
+          if (err) return done(err);
           expect(res.statusCode).to.equal(200);
           expect(res.body).to.have.property('token');
           done();
@@ -31,16 +32,16 @@ module.exports = register = () => {
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
-        .expect(400)
         .end((err, res) => {
-          if (err) done(err);
+          if (err) return done(err);
+          expect(res.statusCode).to.equal(400);
           expect(res.body).to.have.property('errors');
+          expect(res.body.errors).to.have.lengthOf(3);
           const msgs = [
             ['email', 'Please enter a valid email!'],
             ['password', 'Password must be at least 6 characters long!'],
             ['password', 'Password must contain a number!']
           ];
-          expect(res.body.errors).to.have.lengthOf(3);
           msgs.forEach((msg, i) => {
             expect(res.body.errors[i])
               .to.have.property('param')

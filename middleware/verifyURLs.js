@@ -1,8 +1,8 @@
 // Validation.
 const { check, validationResult } = require('express-validator');
 
-module.exports = function(URLs) {
-  return function(req, res, next) {
+module.exports = URLs => {
+  return (req, _res, next) => {
     console.log(req.body);
     URLs.forEach(url =>
       check(url.toLowerCase())
