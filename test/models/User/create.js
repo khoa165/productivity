@@ -24,7 +24,7 @@ module.exports = create = () => {
       done();
     });
 
-    it('saves a user', done => {
+    it('should save a valid user', done => {
       const khoa = new User({
         username: 'khoa165',
         password: 'password',
@@ -56,7 +56,7 @@ module.exports = create = () => {
         });
     });
 
-    it('does not save invalid user', done => {
+    it('should not save an invalid user', done => {
       const harry = new User({
         username: 'harry165',
         password: 'password'
@@ -74,7 +74,7 @@ module.exports = create = () => {
         });
     });
 
-    it('saves multiple users', done => {
+    it('should save multiple valid users', done => {
       const abc = new User({
         username: 'abc',
         password: '123',
