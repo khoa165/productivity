@@ -16,17 +16,9 @@ before(done => {
       });
     })
     .on('error', err => {
-      console.log(err);
+      done(err);
     });
 });
-
-beforeEach(done => {
-  mongoose.connection.dropCollection('users', () => {
-    done();
-  });
-});
-
-afterEach(() => {});
 
 after(() => {
   console.log('Finish testing!');
