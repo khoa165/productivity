@@ -65,7 +65,7 @@ router.post(
       if (!user) {
         user = await User.findOne({ username: credential });
         if (!user) {
-          return res.status(400).json({
+          return res.status(401).json({
             errors: [{ msg: 'Invalid credentials! Please try again!' }]
           });
         }
@@ -74,7 +74,7 @@ router.post(
       // Check if password matches.
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({
+        return res.status(401).json({
           errors: [{ msg: 'Invalid credentials! Please try again!' }]
         });
       }

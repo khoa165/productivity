@@ -20,3 +20,6 @@ app.use(`/tasks`, require(`./routes/${API}/tasks`));
 // Listening to app.
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+// Export app for testing purposes.
+module.exports = app;
