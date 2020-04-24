@@ -13,8 +13,6 @@ import NavigationBar from '../layout/NavigationBar';
 import Alerts from '../layout/Alerts';
 // Dashboard component.
 import Dashboard from '../dashboard/Dashboard';
-// Profiles component.
-import Profiles from '../profiles/Profiles';
 // Profile form components.
 import ProfileForm from '../profile_forms/ProfileForm';
 
@@ -30,7 +28,6 @@ const Routes = () => {
         <Switch>
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/profiles' component={Profiles} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/profile/update' component={ProfileForm} />
           <Route component={NotFound} />
