@@ -9,7 +9,7 @@
   color: #eee;
 
   .overlay {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(200, 120, 120, 0.2);
     position: absolute;
     top: 0;
     left: 0;
@@ -18,13 +18,14 @@
   }
 
   .content {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(156, 85, 24, 0.7);
+    // background: rgba(30, 120, 250, 0.7);
     margin: 40vh auto;
-    padding: 25px;
+    padding: 40px;
   }
 
   .btn {
-    width: 100px;
+    width: 150px;
   }
 
   h1 {
