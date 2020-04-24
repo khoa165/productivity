@@ -17,8 +17,6 @@ import Dashboard from '../dashboard/Dashboard';
 import Profiles from '../profiles/Profiles';
 // Profile form components.
 import ProfileForm from '../profile_forms/ProfileForm';
-import ExperienceForm from '../profile_forms/ExperienceForm';
-import EducationForm from '../profile_forms/EducationForm';
 
 // Library component.
 import { Container } from 'reactstrap';
@@ -35,16 +33,6 @@ const Routes = () => {
           <Route exact path='/profiles' component={Profiles} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/profile/update' component={ProfileForm} />
-          <PrivateRoute
-            exact
-            path='/experience/update'
-            component={ExperienceForm}
-          />
-          <PrivateRoute
-            exact
-            path='/education/update'
-            component={EducationForm}
-          />
           <Route component={NotFound} />
         </Switch>
       </Container>
