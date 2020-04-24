@@ -14,17 +14,14 @@ const Landing = ({ isAuthenticated }) => {
       <div className='overlay'>
         <div className='content'>
           <h1>Coffee Up</h1>
-          <p>
-            <i>
-              Coffee up your productivity and Collaborate with others more
-              easily!
-            </i>
+          <p className='h5 text-light font-italic'>
+            Coffee up your productivity and Collaborate with others more easily!
           </p>
           <div>
-            <Link to='/register' className='btn btn-outline-info mr-2'>
+            <Link to='/register' className='btn btn-lg btn-dark mr-2'>
               SIGN UP
             </Link>
-            <Link to='/login' className='btn btn-outline-light ml-2'>
+            <Link to='/login' className='btn btn-lg btn-outline-light ml-2'>
               LOGIN
             </Link>
           </div>

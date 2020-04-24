@@ -12,6 +12,8 @@ import {
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
+const API = 'api/v1';
+
 // Load user.
 export const loadUser = () => async (dispatch) => {
   // Check for token and set it.
@@ -21,7 +23,7 @@ export const loadUser = () => async (dispatch) => {
 
   try {
     // Send request to API endpoints.
-    const res = await axios.get('/api/auth');
+    const res = await axios.get(`/${API}/auth`);
 
     // Call reducer to load user.
     dispatch({
@@ -37,7 +39,7 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register user.
-export const register = ({ name, email, password }) => async (dispatch) => {
+export const register = ({ username, email, password }) => async (dispatch) => {
   // Request headers.
   const config = {
     headers: {
@@ -46,11 +48,11 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   };
 
   // User data.
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ username, email, password });
 
   try {
     // Send request to API endpoint.
-    const res = await axios.post('/api/users', body, config);
+    const res = await axios.post(`/${API}/users`, body, config);
 
     // Call reducer to register user.
     dispatch({
@@ -75,7 +77,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 };
 
 // Login user.
-export const login = ({ email, password }) => async (dispatch) => {
+export const login = ({ credential, password }) => async (dispatch) => {
   // Request headers.
   const config = {
     headers: {
@@ -84,11 +86,11 @@ export const login = ({ email, password }) => async (dispatch) => {
   };
 
   // User data.
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ credential, password });
 
   try {
     // Send request to API endpoint.
-    const res = await axios.post('/api/auth', body, config);
+    const res = await axios.post(`/${API}/auth`, body, config);
 
     // Call reducer to login user.
     dispatch({

@@ -8,11 +8,13 @@ import {
 } from './types';
 import { setAlert } from './alert';
 
+const API = 'api/v1';
+
 // Get current user profile.
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     // Send request to API endpoints.
-    const res = await axios.get('/api/profile/me');
+    const res = await axios.get(`/${API}/profile/me`);
 
     // Call reducer to get profile.
     dispatch({
@@ -41,7 +43,7 @@ export const createProfile = (formData, history, edit = false) => async (
     };
 
     // Send request to API endpoints.
-    const res = await axios.post('/api/profile', formData, config);
+    const res = await axios.post(`/${API}/profile`, formData, config);
 
     // Call reducer to get profile.
     dispatch({
@@ -80,7 +82,7 @@ export const createProfile = (formData, history, edit = false) => async (
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await axios.delete('/api/profile');
+      await axios.delete(`/${API}/profile`);
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });

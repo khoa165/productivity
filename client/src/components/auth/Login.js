@@ -9,20 +9,20 @@ import '../../styles/Form.scss';
 const Login = ({ login, isAuthenticated }) => {
   // Set user data.
   const [user, setUser] = useState({
-    email: '',
-    password: ''
+    credential: '',
+    password: '',
   });
 
   // Destructuring.
-  const { email, password } = user;
+  const { credential, password } = user;
 
   // Event listener for change in input fields.
-  const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   // Event listener for form submission.
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    login({ email, password });
+    login({ credential, password });
   };
 
   // Redirect if logged in.
@@ -42,10 +42,10 @@ const Login = ({ login, isAuthenticated }) => {
             <h3 className='text-center text-info mb-4'>Account Login</h3>
             <FormGroup>
               <Input
-                type='email'
-                name='email'
-                value={email}
-                placeholder='Please enter a valid email'
+                type='text'
+                name='credential'
+                value={credential}
+                placeholder='Please enter your email or username'
                 onChange={onChange}
                 required
               />
@@ -55,7 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
                 type='password'
                 name='password'
                 value={password}
-                placeholder='Please enter a secure password'
+                placeholder='Please enter your password'
                 onChange={onChange}
                 required
               />
@@ -73,7 +73,7 @@ const Login = ({ login, isAuthenticated }) => {
           lg={{ size: 4, offset: 4 }}
         >
           <div className='other-account-action'>
-            <p className='text-secondary'>New to Dev Hive?</p>
+            <p className='text-secondary'>New to Coffee Up?</p>
             <Link to='/register' className='text-info ml-2'>
               Sign up
             </Link>
@@ -86,11 +86,11 @@ const Login = ({ login, isAuthenticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

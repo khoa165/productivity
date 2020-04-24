@@ -14,11 +14,11 @@
       $c4 11px 11px;
   }
   .btn-primary {
-    background: $brand-primary-color;
-    border-color: $brand-primary-color;
+    background: $brand-brown;
+    border-color: $brand-brown;
     &:hover {
-      background: $brand-primary-darker-color;
-      border-color: $brand-primary-darker-color;
+      background: $brand-dark-brown;
+      border-color: $brand-dark-brown;
     }
   }
 }
