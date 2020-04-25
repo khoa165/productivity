@@ -8,51 +8,32 @@ import { Row, Col, Form, FormGroup, FormText, Input, Button } from 'reactstrap';
 
 let autoComplete;
 
-// Dynamically load JavaScript file with callback when finished
-const loadScript = (url, callback) => {
-  let script = document.createElement('script'); // create script tag
-  script.type = 'text/javascript';
-
-  // When script state is ready and loaded or complete, call callback
-  if (script.readyState) {
-    script.onreadystatechange = function () {
-      if (script.readyState === 'loaded' || script.readyState === 'complete') {
-        script.onreadystatechange = null;
-        callback();
-      }
-    };
-  } else {
-    script.onload = () => callback();
-  }
-
-  script.src = url; // Loaded by url
-  document.getElementsByTagName('head')[0].appendChild(script); // Append to head
-};
-
 // Handle when the script is loaded, assign autoCompleteRef with google maps place autocomplete
 const handleScriptLoad = (updateQuery, autoCompleteRef) => {
-  // Assign autoComplete with Google maps place one time.
-  autoComplete = new window.google.maps.places.Autocomplete(
-    autoCompleteRef.current,
-    { types: ['(cities)'] }
-  );
+  if (window.google) {
+    // Assign autoComplete with Google maps place one time.
+    autoComplete = new window.google.maps.places.Autocomplete(
+      autoCompleteRef.current,
+      { types: ['(cities)'] }
+    );
 
-  // Specify what properties received from API.
-  autoComplete.setFields(['address_components', 'formatted_address']);
-  // Add a listener to handle when the place is selected.
-  autoComplete.addListener('place_changed', () =>
-    handlePlaceSelect(updateQuery)
-  );
+    // Specify what properties received from API.
+    autoComplete.setFields(['address_components', 'formatted_address']);
+    // Add a listener to handle when the place is selected.
+    autoComplete.addListener('place_changed', () =>
+      handlePlaceSelect(updateQuery)
+    );
+  }
 };
 
-async function handlePlaceSelect(updateQuery) {
+const handlePlaceSelect = (updateQuery) => {
   const addressObject = autoComplete.getPlace(); // get place from google api
   const query = addressObject.formatted_address;
   if (query !== null && query !== '') {
     console.log(query);
     updateQuery(query);
   }
-}
+};
 
 const initialState = {
   first_name: '',
@@ -103,11 +84,8 @@ const ProfileForm = ({
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
-      () => handleScriptLoad(setLocation, autoCompleteRef)
-    );
-  }, []);
+    handleScriptLoad(setLocation, autoCompleteRef);
+  }, [window.google]);
 
   useEffect(() => {
     if (!profile) getCurrentProfile();
@@ -122,6 +100,8 @@ const ProfileForm = ({
       if (Array.isArray(profileData.skills))
         profileData.skills = profileData.skills.join(', ');
       setFormData(profileData);
+
+      setLocation(profile.location);
     }
   }, [loading, getCurrentProfile, profile]);
 
