@@ -20,7 +20,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     // Get profile corresponding to current user's id. Populate name, avatar, and created_at from User model.
     const profile = await Profile.findOne({
-      user: req.user.id
+      user: req.user.id,
     }).populate('user', ['name', 'avatar', 'created_at']);
 
     // Check and return profile if exists.
@@ -45,12 +45,8 @@ router.post(
     auth,
     // Data validations.
     [
-      check('first_name', 'First name is required!')
-        .not()
-        .isEmpty(),
-      check('last_name', 'Last name is required!')
-        .not()
-        .isEmpty(),
+      check('first_name', 'First name is required!').not().isEmpty(),
+      check('last_name', 'Last name is required!').not().isEmpty(),
       check('visible')
         .optional()
         .isBoolean()
@@ -65,39 +61,39 @@ router.post(
       //   'Twitter',
       //   'Instagram'
       // ])
-      check('linkedin')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for LinkedIn!'),
-      check('github')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for GitHub!'),
-      check('portfolio')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for portfolio!'),
-      check('blog')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for blog!'),
-      check('facebook')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for Facebook!'),
-      check('youtube')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for YouTube!'),
-      check('twitter')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for Twitter!'),
-      check('instagram')
-        .optional()
-        .isURL()
-        .withMessage('Invalid URL format for Instagram!')
-    ]
+      // check('linkedin')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for LinkedIn!'),
+      // check('github')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for GitHub!'),
+      // check('portfolio')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for portfolio!'),
+      // check('blog')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for blog!'),
+      // check('facebook')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for Facebook!'),
+      // check('youtube')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for YouTube!'),
+      // check('twitter')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for Twitter!'),
+      // check('instagram')
+      //   .optional()
+      //   .isURL()
+      //   .withMessage('Invalid URL format for Instagram!')
+    ],
   ],
   async (req, res) => {
     // Check for errors.
@@ -122,7 +118,7 @@ router.post(
       facebook,
       youtube,
       twitter,
-      instagram
+      instagram,
     } = req.body;
 
     // Build profile object.
@@ -137,7 +133,7 @@ router.post(
 
     // Map through skills, split by comma, trim leading and trailing whitespaces.
     if (skills) {
-      profileFields.skills = skills.split(',').map(skill => skill.trim());
+      profileFields.skills = skills.split(',').map((skill) => skill.trim());
     }
 
     // Build social object
@@ -182,7 +178,7 @@ router.get('/:username', async (req, res) => {
   try {
     // Get user corresponding to username.
     const user = await User.findOne({
-      username: req.params.username
+      username: req.params.username,
     });
 
     // Check if user with given username exists.
@@ -192,7 +188,7 @@ router.get('/:username', async (req, res) => {
 
     // Get profile corresponding to user's id. Populate name and avatar from User model.
     const profile = await Profile.findOne({
-      user: user.id
+      user: user.id,
     }).populate('user', ['avatar', 'created_at']);
 
     // Check and return profile only if exists and visible set to true.
@@ -219,7 +215,7 @@ router.delete('/', auth, async (req, res) => {
     await User.findOneAndRemove({ _id: req.user.id });
 
     return res.status(200).json({
-      msg: 'Account deleted successfully. We are sad to see you go!'
+      msg: 'Account deleted successfully. We are sad to see you go!',
     });
   } catch (err) {
     console.error(err.message);
