@@ -31,7 +31,7 @@ const Dashboard = ({
           <DashboardAction />
 
           <Button color='danger' onClick={() => deleteAccount()}>
-            <i class='fas fa-window-close'></i> Delete my account
+            <i className='fas fa-window-close'></i> Delete my account
           </Button>
         </Fragment>
       ) : (

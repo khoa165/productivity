@@ -75,8 +75,8 @@ const NavigationBar = ({
 };
 
 NavigationBar.defaultProps = {
-  title: 'Coffee',
-  icon: 'fas fa-coffee',
+  title: 'Coffee Up',
+  icon: 'fas fa-mug-hot',
 };
 
 NavigationBar.propTypes = {
