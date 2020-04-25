@@ -39,7 +39,7 @@ const Login = ({ login, isAuthenticated }) => {
           lg={{ size: 4, offset: 4 }}
         >
           <Form onSubmit={onSubmit} className='authenticate-form'>
-            <h3 className='text-center text-info mb-4'>Account Login</h3>
+            <h3 className='text-center text-brown mb-4'>Account Login</h3>
             <FormGroup>
               <Input
                 type='text'
@@ -63,7 +63,7 @@ const Login = ({ login, isAuthenticated }) => {
             <Input
               type='submit'
               value='Login'
-              className='btn-outline-info btn-block submitFormButton'
+              className='btn btn-outline-warning btn-block submitFormButton'
             />
           </Form>
         </Col>
@@ -74,7 +74,7 @@ const Login = ({ login, isAuthenticated }) => {
         >
           <div className='other-account-action'>
             <p className='text-secondary'>New to Coffee Up?</p>
-            <Link to='/register' className='text-info ml-2'>
+            <Link to='/register' className='hover-brown text-brown ml-2'>
               Sign up
             </Link>
           </div>

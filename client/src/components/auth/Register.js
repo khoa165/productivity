@@ -51,7 +51,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           lg={{ size: 4, offset: 4 }}
         >
           <Form onSubmit={onSubmit} className='authenticate-form'>
-            <h3 className='text-center text-info mb-4'>Account Register</h3>
+            <h3 className='text-center text-brown mb-4'>Account Register</h3>
             <FormGroup>
               <Input
                 type='text'
@@ -95,7 +95,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <Input
               type='submit'
               value='Register'
-              className='btn-outline-info btn-block submitFormButton'
+              className='btn btn-outline-warning btn-block submitFormButton'
             />
           </Form>
         </Col>
@@ -106,7 +106,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         >
           <div className='other-account-action'>
             <p className='text-secondary'>Already have an account?</p>
-            <Link to='/login' className='text-info ml-2'>
+            <Link to='/login' className='hover-brown text-brown ml-2'>
               Sign in
             </Link>
           </div>

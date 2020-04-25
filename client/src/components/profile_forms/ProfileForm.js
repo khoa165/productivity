@@ -61,7 +61,7 @@ const ProfileForm = ({
   const [formData, setFormData] = useState(initialState);
 
   // Set whether to display social media inputs.
-  const [displaySocialInputs, toggleSocialInputs] = useState(initialState);
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   // Destructuring.
   const {
@@ -80,6 +80,7 @@ const ProfileForm = ({
     instagram,
   } = formData;
 
+  // Set location query.
   const [location, setLocation] = useState('');
   const autoCompleteRef = useRef(null);
 
@@ -121,7 +122,7 @@ const ProfileForm = ({
   ) : (
     <Fragment>
       <div className='my-4'>
-        <h1 className='text-info text-uppercase'>Create Your Profile</h1>
+        <h1 className='text-brown text-uppercase'>Create Your Profile</h1>
         <p className='text-muted'>
           <i className='fas fa-user mx-1' /> Let's color your profile with cool
           coffee flavor
@@ -200,7 +201,7 @@ const ProfileForm = ({
         <div className='mb-4'>
           <Button
             outline
-            color='info'
+            color='warning'
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
           >
             {displaySocialInputs
