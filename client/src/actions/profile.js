@@ -60,9 +60,10 @@ export const createProfile = (formData, history, edit = false) => async (
       )
     );
 
-    if (!edit) {
-      history.push('/dashboard');
-    }
+    history.push('/dashboard');
+    // if (!edit) {
+    //   history.push('/dashboard');
+    // }
   } catch (err) {
     // Loop through errors and call reducer to set alert.
     const errors = err.response.data.errors;
