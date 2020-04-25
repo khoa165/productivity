@@ -6,7 +6,9 @@ let db;
 if (process.env.NODE_ENV === 'production') {
   db = process.env.MONGO_URI;
 } else {
-  db = 'mongodb://localhost/productivity_devdb';
+  // For testing
+  // db = 'mongodb://localhost/productivity_devdb';
+  db = process.env.MONGO_URI;
 }
 
 const connectDB = async () => {
@@ -16,7 +18,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
     console.log('MongoDB connected...');
   } catch (err) {
