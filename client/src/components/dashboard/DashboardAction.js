@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const DashboardAction = () => {
   return (
-    <div className=''>
+    <div>
       <Link
-        className='btn btn-lg btn-light text-uppercase text-info'
+        className='btn btn-lg btn-light text-uppercase text-brown'
         to='/profile/update'
       >
-        <i className='fas fa-user-circle text-info mr-1' /> Edit profile
+        <i className='fas fa-user-circle mr-1' /> Edit profile
       </Link>
     </div>
   );
