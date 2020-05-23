@@ -29,9 +29,9 @@ router.get('/', auth, async (req, res) => {
     return res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
-    return res
-      .status(500)
-      .send('Unexpected server error happened. Please try again later!');
+    return res.status(500).json({
+      error: 'Unexpected server error happened. Please try again later!',
+    });
   }
 });
 
@@ -42,12 +42,8 @@ router.post(
   '/',
   [
     // Data validations.
-    check('credential', 'Email or username is required!')
-      .not()
-      .isEmpty(),
-    check('password', 'Password is required!')
-      .not()
-      .isEmpty()
+    check('credential', 'Email or username is required!').not().isEmpty(),
+    check('password', 'Password is required!').not().isEmpty(),
   ],
   async (req, res) => {
     // Check for errors.
@@ -66,7 +62,7 @@ router.post(
         user = await User.findOne({ username: credential });
         if (!user) {
           return res.status(401).json({
-            errors: [{ msg: 'Invalid credentials! Please try again!' }]
+            errors: [{ msg: 'Invalid credentials! Please try again!' }],
           });
         }
       }
@@ -75,15 +71,15 @@ router.post(
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return res.status(401).json({
-          errors: [{ msg: 'Invalid credentials! Please try again!' }]
+          errors: [{ msg: 'Invalid credentials! Please try again!' }],
         });
       }
 
       // Sign and return jsonwebtoken.
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
@@ -91,14 +87,14 @@ router.post(
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
-          return res.status(200).json({ token: token });
+          return res.status(200).json({ token });
         }
       );
     } catch (err) {
       console.error(err.message);
-      return res
-        .status(500)
-        .send('Unexpected server error happened. Please try again later!');
+      return res.status(500).json({
+        error: 'Unexpected server error happened. Please try again later!',
+      });
     }
   }
 );

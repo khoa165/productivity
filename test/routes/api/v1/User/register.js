@@ -1,17 +1,21 @@
 const request = require('supertest');
 const expect = require('chai').expect;
+const supertestPrefix = require('supertest-prefix').default;
 const app = require('../../../../../server');
 
 module.exports = register = () => {
+  const prefix = supertestPrefix('/api/v1');
+
   describe('POST /users', () => {
-    it('should return token for valid input', done => {
+    it('should return token for valid input', (done) => {
       const user = {
         username: 'khoa165',
         email: 'khoa@gmail.com',
-        password: 'abc123'
+        password: 'abc123',
       };
       request(app)
         .post('/users')
+        .use(prefix)
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -23,12 +27,13 @@ module.exports = register = () => {
         });
     });
 
-    it('should return errors for missing email and password', done => {
+    it('should return errors for missing email and password', (done) => {
       const user = {
-        username: 'khoa165'
+        username: 'khoa165',
       };
       request(app)
         .post('/users')
+        .use(prefix)
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -40,15 +45,13 @@ module.exports = register = () => {
           const msgs = [
             ['email', 'Please enter a valid email!'],
             ['password', 'Password must be at least 6 characters long!'],
-            ['password', 'Password must contain a number!']
+            ['password', 'Password must contain a number!'],
           ];
           msgs.forEach((msg, i) => {
             expect(res.body.errors[i])
               .to.have.property('param')
               .to.equal(msg[0]);
-            expect(res.body.errors[i])
-              .to.have.property('msg')
-              .to.equal(msg[1]);
+            expect(res.body.errors[i]).to.have.property('msg').to.equal(msg[1]);
           });
           done();
         });

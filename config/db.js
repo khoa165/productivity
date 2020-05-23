@@ -11,21 +11,22 @@ if (process.env.NODE_ENV === 'production') {
   db = process.env.MONGO_URI;
 }
 
-const connectDB = async () => {
-  try {
-    // Connect to mongoDB.
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+const connectDB = () => {
+  mongoose.connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  });
+  mongoose.connection
+    .once('open', () => {
+      console.log('MongoDB connected...');
+    })
+    .on('error', (err) => {
+      console.error(err.message);
+      // Exit process with failure.
+      process.exit(1);
     });
-    console.log('MongoDB connected...');
-  } catch (err) {
-    console.error(err.message);
-    // Exit process with failure.
-    process.exit(1);
-  }
 };
 
 module.exports = connectDB;

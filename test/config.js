@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-before(done => {
-  mongoose.connect('mongodb://localhost/productivity_testdb', {
+before((done) => {
+  const localDB = 'mongodb://localhost/productivity_testdb';
+  mongoose.connect(localDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   });
   mongoose.connection
     .once('open', () => {
@@ -15,7 +16,7 @@ before(done => {
         done();
       });
     })
-    .on('error', err => {
+    .on('error', (err) => {
       done(err);
     });
 });

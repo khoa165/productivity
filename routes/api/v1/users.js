@@ -36,7 +36,7 @@ router.post(
       .isLength({ min: 6 })
       .withMessage('Password must be at least 6 characters long!')
       .matches(/\d/)
-      .withMessage('Password must contain a number!')
+      .withMessage('Password must contain a number!'),
   ],
   async (req, res) => {
     // Check for errors.
@@ -55,23 +55,23 @@ router.post(
       const errors = [];
       if (sameEmail) {
         errors.push({
-          msg: 'Email was already taken. Please enter another email!'
+          msg: 'Email was already taken. Please enter another email!',
         });
       }
       if (sameUsername) {
         errors.push({
-          msg: 'Username was already taken. Please enter another username!'
+          msg: 'Username was already taken. Please enter another username!',
         });
       }
       if (errors.length > 0) {
-        return res.status(400).json({ errors: errors });
+        return res.status(400).json({ errors });
       }
 
       // Get users gravatar.
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
-        d: 'mm'
+        d: 'mm',
       });
 
       // Create new user.
@@ -79,7 +79,7 @@ router.post(
         username,
         email,
         avatar,
-        password
+        password,
       });
 
       // Encrypt password.
@@ -90,8 +90,8 @@ router.post(
       // Return jsonwebtoken.
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
@@ -99,14 +99,14 @@ router.post(
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
-          return res.status(200).json({ token: token });
+          return res.status(200).json({ token });
         }
       );
     } catch (err) {
       console.error(err.message);
-      return res
-        .status(500)
-        .send('Unexpected server error happened. Please try again later!');
+      return res.status(500).jon({
+        error: 'Unexpected server error happened. Please try again later!',
+      });
     }
   }
 );
