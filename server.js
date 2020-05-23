@@ -8,7 +8,7 @@ connectDB();
 // Init middleware.
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.send('API Running'));
+app.get('/', (_req, res) => res.send('API Running'));
 
 // Define routes.
 const API = 'api/v1';
@@ -22,4 +22,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // Export app for testing purposes.
-// module.exports = app;
+module.exports = app;
