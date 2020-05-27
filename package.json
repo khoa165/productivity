@@ -29,6 +29,7 @@
     "gravatar": "^1.8.0",
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.26.0",
     "mongoose": "^5.9.15",
     "supertest-prefix": "^1.0.2"
   },

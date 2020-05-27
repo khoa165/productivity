@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const expect = require('chai').expect;
 const supertestPrefix = require('supertest-prefix').default;
-const app = require('../../../../../server');
+const app = require('../../../../server');
 
 module.exports = login = () => {
   const prefix = supertestPrefix('/api/v1');
 
-  describe('POST /auth', () => {
+  describe('POST /auth (login)', () => {
     before((done) => {
       const user = {
         username: 'khoa165',

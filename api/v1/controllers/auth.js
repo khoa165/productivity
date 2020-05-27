@@ -1,16 +1,9 @@
-// Server routing.
-const express = require('express');
-const router = express.Router();
-
-// Middleware.
-const auth = require('../../../middleware/auth');
+// Validation.
+const { validationResult } = require('express-validator');
 
 // Authentication.
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-// Validation.
-const { check, validationResult } = require('express-validator');
 
 // Private data configurations.
 const dotenv = require('dotenv');
@@ -19,33 +12,21 @@ dotenv.config();
 // Link User model.
 const User = require('../../../models/User');
 
-// @route     GET /auth
-// @desc      Get authenticated user.
-// @access    Public
-router.get('/', auth, async (req, res) => {
-  try {
-    // Retrieve user using id, exclude password when return.
-    const user = await User.findById(req.user.id).select('-password');
-    return res.status(200).json(user);
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).json({
-      error: 'Unexpected server error happened. Please try again later!',
-    });
-  }
-});
+module.exports = {
+  getUser: async (req, res, _next) => {
+    try {
+      // Retrieve user using id, exclude password when return.
+      const user = await User.findById(req.user.id).select('-password');
+      return res.status(200).json(user);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).json({
+        error: 'Unexpected server error happened. Please try again later!',
+      });
+    }
+  },
 
-// @route     POST /auth
-// @desc      Authenticate user & get token.
-// @access    Public
-router.post(
-  '/',
-  [
-    // Data validations.
-    check('credential', 'Email or username is required!').not().isEmpty(),
-    check('password', 'Password is required!').not().isEmpty(),
-  ],
-  async (req, res) => {
+  login: async (req, res, _next) => {
     // Check for errors.
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -96,7 +77,5 @@ router.post(
         error: 'Unexpected server error happened. Please try again later!',
       });
     }
-  }
-);
-
-module.exports = router;
+  },
+};
