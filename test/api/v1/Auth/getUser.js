@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const expect = require('chai').expect;
 const supertestPrefix = require('supertest-prefix').default;
-const app = require('../../../../../server');
+const app = require('../../../../server');
 
 module.exports = getUser = () => {
   let token;
@@ -33,7 +33,7 @@ module.exports = getUser = () => {
     });
   });
 
-  describe('POST /auth', () => {
+  describe('GET /auth (getUser)', () => {
     it('should return user if valid token is passed', (done) => {
       request(app)
         .get('/auth')

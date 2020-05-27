@@ -4,11 +4,10 @@ dotenv.config();
 
 let db;
 if (process.env.NODE_ENV === 'production') {
-  db = process.env.MONGO_URI;
+  db = process.env.MONGO_URI_PROD;
 } else {
-  // For testing
-  // db = 'mongodb://localhost/productivity_devdb';
-  db = process.env.MONGO_URI;
+  console.log('Development environment...');
+  db = process.env.MONGO_URI_DEV;
 }
 
 const connectDB = () => {
