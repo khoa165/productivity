@@ -7,10 +7,11 @@ const app = require('../../../../server');
 
 module.exports = create = () => {
   let token;
+  let user;
   const prefix = supertestPrefix('/api/v1');
 
   before((done) => {
-    const user = {
+    user = {
       username: 'harry165',
       email: 'harry@gmail.com',
       password: 'abc123',
@@ -49,9 +50,20 @@ module.exports = create = () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) return done(err);
-          console.log(res.body);
           expect(res.statusCode).to.equal(200);
+          expect(res.body).to.include.all.keys(
+            'collaborators',
+            'subscribers',
+            'tasks',
+            'name',
+            'author',
+            'created_at',
+            'updated_at'
+          );
           expect(res.body).to.have.property('name').to.equal(tasklist.name);
+          expect(res.body.collaborators).to.have.lengthOf(0);
+          expect(res.body.subscribers).to.have.lengthOf(0);
+          expect(res.body.tasks).to.have.lengthOf(0);
           done();
         });
     });
