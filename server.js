@@ -28,6 +28,7 @@ app.use(`/${API}/auth`, require(`./${API}/routes/auth`));
 app.use(`/${API}/users`, require(`./${API}/routes/users`));
 app.use(`/${API}/profile`, require(`./${API}/routes/profile`));
 app.use(`/${API}/tasks`, require(`./${API}/routes/tasks`));
+app.use(`/${API}/tasklists`, require(`./${API}/routes/tasklists`));
 
 // Listening to app.
 const PORT = process.env.PORT || 5000;
