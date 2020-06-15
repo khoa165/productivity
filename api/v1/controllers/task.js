@@ -13,12 +13,30 @@ module.exports = {
     }
 
     // Destructuring data from request body.
-    const { name, stage, deadline, link } = req.body;
+    const { taskId, name, stage, deadline, link } = req.body;
 
     try {
-      // Create new task and save.
-      const task = new Task({ name, stage, deadline, link });
-      await task.save();
+      let task;
+      if (taskId) {
+        task = await Task.findOneAndUpdate(
+          {
+            _id: taskId,
+          },
+          {
+            name,
+            stage,
+            deadline,
+            link,
+          },
+          {
+            new: true,
+          }
+        );
+      } else {
+        // Create new task and save.
+        task = new Task({ name, stage, deadline, link });
+        await task.save();
+      }
       return res.status(200).json(task);
     } catch (err) {
       console.error(err.message);

@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   console.log('Development environment...');
   db = process.env.MONGO_URI_DEV;
+  // db = 'mongodb://localhost/productivity_testdb';
 }
 
 const connectDB = () => {
