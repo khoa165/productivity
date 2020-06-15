@@ -33,8 +33,9 @@ module.exports = {
           }
         );
       } else {
-        // Create new task and save.
+        // Create new task, link author and save.
         tasklist = new TaskList({ name, stage, deadline, link });
+        tasklist.author = req.user.id;
         await tasklist.save();
       }
       return res.status(200).json(tasklist);
