@@ -49,6 +49,7 @@ module.exports = create = () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) return done(err);
+          console.log(res.body);
           expect(res.statusCode).to.equal(200);
           expect(res.body).to.have.property('name').to.equal(tasklist.name);
           done();
