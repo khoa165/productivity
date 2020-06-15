@@ -29,7 +29,7 @@ module.exports = create = () => {
   });
 
   after((done) => {
-    mongoose.connection.dropCollection('tasklists', () => {
+    mongoose.connection.dropCollection('task_lists', () => {
       mongoose.connection.dropCollection('users', () => {
         done();
       });
@@ -50,7 +50,7 @@ module.exports = create = () => {
         .end((err, res) => {
           if (err) return done(err);
           expect(res.statusCode).to.equal(200);
-          expect(res.body).to.have.property('name').to.equal(task.name);
+          expect(res.body).to.have.property('name').to.equal(tasklist.name);
           done();
         });
     });
