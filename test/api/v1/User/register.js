@@ -5,15 +5,15 @@ const supertestPrefix = require('supertest-prefix').default;
 const app = require('../../../../server');
 
 module.exports = register = () => {
-  const prefix = supertestPrefix('/api/v1');
-
-  after((done) => {
-    mongoose.connection.dropCollection('users', () => {
-      done();
-    });
-  });
-
   describe('POST /users (register)', () => {
+    const prefix = supertestPrefix('/api/v1');
+
+    after((done) => {
+      mongoose.connection.dropCollection('users', () => {
+        done();
+      });
+    });
+
     it('should return token for valid input', (done) => {
       const user = {
         username: 'khoa165',

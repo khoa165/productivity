@@ -17,6 +17,10 @@ module.exports = {
     try {
       // Retrieve user using id, exclude password when return.
       const user = await User.findById(req.user.id).select('-password');
+      if (!user) {
+        return res.status(404).json({ msg: 'User not found!' });
+      }
+
       return res.status(200).json(user);
     } catch (err) {
       console.error(err.message);

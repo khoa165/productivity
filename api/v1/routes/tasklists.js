@@ -42,4 +42,9 @@ router.post(
   tasklistController.create
 );
 
+// @route     PUT /tasklists/:tasklist_id/add/:task_id
+// @desc      Add existing task to existing task list.
+// @access    Private
+router.put('/:tasklist_id/add/:task_id', auth, tasklistController.addTask);
+
 module.exports = router;

@@ -21,7 +21,6 @@ module.exports = read = () => {
         password: 'password',
         email: 'cutebird@gmail.com',
       });
-
       Promise.all([cat.save(), dog.save(), bird.save()]).then(() => done());
     });
 

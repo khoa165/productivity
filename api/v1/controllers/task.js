@@ -32,9 +32,14 @@ module.exports = {
             new: true,
           }
         );
+
+        if (!task) {
+          return res.status(404).json({ msg: 'Task not found!' });
+        }
       } else {
-        // Create new task and save.
+        // Create new task, link author and save.
         task = new Task({ name, stage, deadline, link });
+        task.author = req.user.id;
         await task.save();
       }
       return res.status(200).json(task);

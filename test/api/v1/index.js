@@ -7,7 +7,7 @@ module.exports = routes = () => {
   describe('Routes', () => {
     // user();
     // auth();
-    task();
+    // task();
     tasklist();
   });
 };

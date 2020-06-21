@@ -5,9 +5,9 @@ const supertestPrefix = require('supertest-prefix').default;
 const app = require('../../../../server');
 
 module.exports = login = () => {
-  const prefix = supertestPrefix('/api/v1');
-
   describe('POST /auth (login)', () => {
+    const prefix = supertestPrefix('/api/v1');
+
     before((done) => {
       const user = {
         username: 'khoa165',

@@ -6,38 +6,38 @@ const moment = require('moment');
 const app = require('../../../../server');
 
 module.exports = create = () => {
-  let token;
-  let user;
-  const prefix = supertestPrefix('/api/v1');
+  describe('POST /tasklists', () => {
+    let token;
+    let user;
+    const prefix = supertestPrefix('/api/v1');
 
-  before((done) => {
-    user = {
-      username: 'harry165',
-      email: 'harry@gmail.com',
-      password: 'abc123',
-    };
-    request(app)
-      .post('/users')
-      .use(prefix)
-      .send(user)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .end((err, res) => {
-        if (err) return done(err);
-        token = res.body.token;
-        done();
-      });
-  });
+    before((done) => {
+      user = {
+        username: 'harry165',
+        email: 'harry@gmail.com',
+        password: 'abc123',
+      };
+      request(app)
+        .post('/users')
+        .use(prefix)
+        .send(user)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) return done(err);
+          token = res.body.token;
+          done();
+        });
+    });
 
-  after((done) => {
-    mongoose.connection.dropCollection('task_lists', () => {
-      mongoose.connection.dropCollection('users', () => {
-        done();
+    after((done) => {
+      mongoose.connection.dropCollection('task_lists', () => {
+        mongoose.connection.dropCollection('users', () => {
+          done();
+        });
       });
     });
-  });
 
-  describe('POST /tasklists', () => {
     it('should return new task for valid task list name', (done) => {
       const tasklist = {
         name: 'Testing task list routes',
