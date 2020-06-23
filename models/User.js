@@ -4,33 +4,40 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   avatar: String,
   admin: {
     type: Boolean,
-    default: false
+    default: false,
+  },
+
+  reset_password_token: {
+    type: String,
+  },
+  reset_password_expires: {
+    type: Date,
   },
 
   // Account created.
   created_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   // Account last updated.
   updated_at: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
