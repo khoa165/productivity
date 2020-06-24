@@ -28,6 +28,6 @@ after(() => {
 });
 
 describe('----- TESTING -----', () => {
-  // models();
+  models();
   routes();
 });

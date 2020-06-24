@@ -4,15 +4,14 @@ const expect = require('chai').expect;
 const supertestPrefix = require('supertest-prefix').default;
 const app = require('../../../../server');
 
-module.exports = getUser = () => {
-  describe('GET /auth (getUser)', () => {
-    let token;
+module.exports = requestPasswordReset = () => {
+  describe('POST /auth/reset_password (requestPasswordReset)', () => {
     const prefix = supertestPrefix('/api/v1');
 
     before((done) => {
       const user = {
-        username: 'harry165',
-        email: 'harry@gmail.com',
+        username: 'khoa165',
+        email: 'khoa165random@gmail.com',
         password: 'abc123',
         confirmedPassword: 'abc123',
       };
@@ -24,7 +23,6 @@ module.exports = getUser = () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) return done(err);
-          token = res.body.token;
           done();
         });
     });
@@ -35,19 +33,19 @@ module.exports = getUser = () => {
       });
     });
 
-    it('should return user if valid token is passed', (done) => {
+    it('should send email if user exists', (done) => {
       request(app)
-        .get('/auth')
+        .post('/auth/forgot_password')
         .use(prefix)
-        .set({ Accept: 'application/json', 'x-auth-token': token })
+        .send({ email: 'khoa165random@gmail.com' })
+        .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) return done(err);
           expect(res.statusCode).to.equal(200);
-          expect(res.body).to.have.property('username').to.equal('harry165');
           expect(res.body)
-            .to.have.property('email')
-            .to.equal('harry@gmail.com');
+            .to.have.property('msg')
+            .to.equal('Check your email for link to reset password!');
           done();
         });
     });

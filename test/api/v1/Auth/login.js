@@ -13,6 +13,7 @@ module.exports = login = () => {
         username: 'khoa165',
         email: 'khoa@gmail.com',
         password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       request(app)
         .post('/users')

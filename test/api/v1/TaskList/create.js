@@ -16,6 +16,7 @@ module.exports = create = () => {
         username: 'harry165',
         email: 'harry@gmail.com',
         password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       request(app)
         .post('/users')

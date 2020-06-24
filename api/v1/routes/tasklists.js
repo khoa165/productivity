@@ -19,7 +19,7 @@ router.post(
   [
     auth,
     [
-      check('name', 'Task list name is required!').not().isEmpty(),
+      check('name', 'Task list name is required!').notEmpty(),
       check('stage')
         .optional()
         .isIn(['New', 'In progress', 'Done', 'Cancelled'])

@@ -5,9 +5,9 @@ const tasklist = require('./TaskList/index');
 
 module.exports = routes = () => {
   describe('Routes', () => {
-    // user();
-    // auth();
-    // task();
+    user();
+    auth();
+    task();
     tasklist();
   });
 };

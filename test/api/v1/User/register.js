@@ -19,6 +19,7 @@ module.exports = register = () => {
         username: 'khoa165',
         email: 'khoa@gmail.com',
         password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       request(app)
         .post('/users')
@@ -48,11 +49,12 @@ module.exports = register = () => {
           if (err) return done(err);
           expect(res.statusCode).to.equal(400);
           expect(res.body).to.have.property('errors');
-          expect(res.body.errors).to.have.lengthOf(3);
+          expect(res.body.errors).to.have.lengthOf(4);
           const msgs = [
             ['email', 'Please enter a valid email!'],
-            ['password', 'Password must be at least 6 characters long!'],
+            ['password', 'Password must be between 6 and 20 characters long!'],
             ['password', 'Password must contain a number!'],
+            ['confirmedPassword', 'Invalid value'],
           ];
           msgs.forEach((msg, i) => {
             expect(res.body.errors[i])
