@@ -1,36 +1,43 @@
+const mongoose = require('mongoose');
 const expect = require('chai').expect;
 const User = require('../../../models/User');
 
 module.exports = read = () => {
   describe('#read', () => {
     let cat, dog, bird;
-    beforeEach(done => {
+    beforeEach((done) => {
       cat = new User({
         username: 'cutecat',
         password: 'password',
-        email: 'cutecat@gmail.com'
+        email: 'cutecat@gmail.com',
       });
       dog = new User({
         username: 'cutedog',
         password: 'password',
-        email: 'cutedog@gmail.com'
+        email: 'cutedog@gmail.com',
       });
       bird = new User({
         username: 'cutebird',
         password: 'password',
-        email: 'cutebird@gmail.com'
+        email: 'cutebird@gmail.com',
       });
 
       Promise.all([cat.save(), dog.save(), bird.save()]).then(() => done());
     });
 
-    it('should find all users with specified username', done => {
+    after((done) => {
+      mongoose.connection.dropCollection('users', () => {
+        done();
+      });
+    });
+
+    it('should find all users with specified username', (done) => {
       User.find({ username: 'cutecat' })
-        .then(users => {
+        .then((users) => {
           expect(users.length).to.equal(1);
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           done(err);
         });
     });

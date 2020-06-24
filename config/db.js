@@ -4,28 +4,32 @@ dotenv.config();
 
 let db;
 if (process.env.NODE_ENV === 'production') {
-  db = process.env.MONGO_URI;
+  db = process.env.MONGO_URI_PROD;
+} else if (process.env.NODE_ENV === 'test') {
+  console.log('Test environment...');
+  // db = process.env.MONGO_URI_DEV;
+  db = 'mongodb://localhost/productivity_testdb';
 } else {
-  // For testing
-  // db = 'mongodb://localhost/productivity_devdb';
-  db = process.env.MONGO_URI;
+  console.log('Development environment...');
+  db = process.env.MONGO_URI_DEV;
 }
 
-const connectDB = async () => {
-  try {
-    // Connect to mongoDB.
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+const connectDB = () => {
+  mongoose.connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  });
+  mongoose.connection
+    .once('open', () => {
+      console.log('MongoDB connected...');
+    })
+    .on('error', (err) => {
+      console.error(err.message);
+      // Exit process with failure.
+      process.exit(1);
     });
-    console.log('MongoDB connected...');
-  } catch (err) {
-    console.error(err.message);
-    // Exit process with failure.
-    process.exit(1);
-  }
 };
 
 module.exports = connectDB;
