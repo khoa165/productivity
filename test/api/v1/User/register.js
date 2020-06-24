@@ -1,17 +1,29 @@
+const mongoose = require('mongoose');
 const request = require('supertest');
 const expect = require('chai').expect;
-const app = require('../../../../../server');
+const supertestPrefix = require('supertest-prefix').default;
+const app = require('../../../../server');
 
 module.exports = register = () => {
-  describe('POST /users', () => {
-    it('should return token for valid input', done => {
+  describe('POST /users (register)', () => {
+    const prefix = supertestPrefix('/api/v1');
+
+    after((done) => {
+      mongoose.connection.dropCollection('users', () => {
+        done();
+      });
+    });
+
+    it('should return token for valid input', (done) => {
       const user = {
         username: 'khoa165',
         email: 'khoa@gmail.com',
-        password: 'abc123'
+        password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       request(app)
         .post('/users')
+        .use(prefix)
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -23,12 +35,13 @@ module.exports = register = () => {
         });
     });
 
-    it('should return errors for missing email and password', done => {
+    it('should return errors for missing email and password', (done) => {
       const user = {
-        username: 'khoa165'
+        username: 'khoa165',
       };
       request(app)
         .post('/users')
+        .use(prefix)
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -36,19 +49,18 @@ module.exports = register = () => {
           if (err) return done(err);
           expect(res.statusCode).to.equal(400);
           expect(res.body).to.have.property('errors');
-          expect(res.body.errors).to.have.lengthOf(3);
+          expect(res.body.errors).to.have.lengthOf(4);
           const msgs = [
             ['email', 'Please enter a valid email!'],
-            ['password', 'Password must be at least 6 characters long!'],
-            ['password', 'Password must contain a number!']
+            ['password', 'Password must be between 6 and 20 characters long!'],
+            ['password', 'Password must contain a number!'],
+            ['confirmedPassword', 'Invalid value'],
           ];
           msgs.forEach((msg, i) => {
             expect(res.body.errors[i])
               .to.have.property('param')
               .to.equal(msg[0]);
-            expect(res.body.errors[i])
-              .to.have.property('msg')
-              .to.equal(msg[1]);
+            expect(res.body.errors[i]).to.have.property('msg').to.equal(msg[1]);
           });
           done();
         });

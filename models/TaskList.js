@@ -4,57 +4,56 @@ const TaskListSchema = new mongoose.Schema({
   // Every task list has an author/owner.
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'user',
   },
 
   // Every task list may have several collaborators.
   collaborators: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user'
-    }
+      ref: 'user',
+    },
   ],
 
   // Every task list may have several subscribers.
   subscribers: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user'
-    }
+      ref: 'user',
+    },
   ],
 
-  // Task list visibility to public.
-  visible: {
-    type: Boolean,
-    default: true
-  },
+  // Every task list may have multiple tasks.
+  tasks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'task',
+    },
+  ],
 
   // Basic info.
   name: {
     type: String,
-    required: true
-  },
-  completed: {
-    type: Boolean,
-    default: false
+    required: true,
   },
   stage: {
     type: String,
-    required: true
+    enum: ['New', 'In progress', 'Done', 'Cancelled'],
   },
-  link: String,
   deadline: Date,
+  link: String,
 
   // Task list created.
   created_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
+
   // Task list last updated.
   updated_at: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = TaskList = mongoose.model('task_list', TaskListSchema);
