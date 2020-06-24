@@ -17,7 +17,8 @@ dotenv.config();
 
 // Email configurations
 const emailId = process.env.MAILER_EMAIL_ID || 'projects.khoa165@gmail.com';
-const emailPassword = process.env.MAILER_PASSWORD;
+const emailPassword = process.env.MAILER_EMAIL_PASSWORD;
+
 const smtpTransport = nodemailer.createTransport({
   service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
   auth: {
@@ -27,7 +28,12 @@ const smtpTransport = nodemailer.createTransport({
 });
 
 const handlebarsOptions = {
-  viewEngine: 'handlebars',
+  viewEngine: {
+    extName: '.html',
+    partialsDir: path.resolve('./api/v1/templates/'),
+    layoutsDir: path.resolve('./api/v1/templates/'),
+    defaultLayout: '',
+  },
   viewPath: path.resolve('./api/v1/templates/'),
   extName: '.html',
 };
@@ -176,7 +182,7 @@ module.exports = {
     }
 
     // Destructuring data from request body.
-    const { newPassword, token } = req.body;
+    const { newPassword, confirmedPassword, token } = req.body;
 
     try {
       // Check if token is valid.
@@ -187,10 +193,30 @@ module.exports = {
         },
       });
 
+      // User not found, token is either invalid or expired.
       if (!user) {
-        return res.status(401).json({
-          errors: [{ msg: 'Password reset token is invalid or expired!' }],
+        errors.push({
+          msg: 'Password reset token is invalid or expired!',
         });
+      }
+
+      // Check if confirmed password matches.
+      if (newPassword !== confirmedPassword) {
+        errors.push({
+          msg: 'Passwords do not match!',
+        });
+      }
+
+      // Check if password is the same as previous password.
+      const isMatch = await bcrypt.compare(newPassword, user.password);
+      if (isMatch) {
+        errors.push({
+          msg: 'New password cannot be the same!',
+        });
+      }
+
+      if (errors.length > 0) {
+        return res.status(401).json({ errors });
       }
 
       // Encrypt password.

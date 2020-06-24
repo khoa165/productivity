@@ -24,7 +24,7 @@ module.exports = {
     }
 
     // Destructuring data from request body.
-    const { username, email, password } = req.body;
+    const { username, email, password, confirmedPassword } = req.body;
 
     try {
       // Check if user exists (check if email/username exists).
@@ -39,6 +39,11 @@ module.exports = {
       if (sameUsername) {
         errors.push({
           msg: 'Username was already taken. Please enter another username!',
+        });
+      }
+      if (password !== confirmedPassword) {
+        errors.push({
+          msg: 'Passwords do not match!',
         });
       }
       if (errors.length > 0) {
@@ -77,7 +82,7 @@ module.exports = {
         { expiresIn: 86400 },
         (err, token) => {
           if (err) throw err;
-          return res.status(200).json({ token });
+          return res.status(200).json({ username, token });
         }
       );
     } catch (err) {

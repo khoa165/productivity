@@ -23,32 +23,38 @@ router.post(
   '/',
   [
     // Data validations.
-    check('credential', 'Email or username is required!').not().isEmpty(),
-    check('password', 'Password is required!').not().isEmpty(),
+    check('credential', 'Email or username is required!').notEmpty(),
+    check('password', 'Password is required!').notEmpty(),
   ],
   authController.login
 );
 
-// @route     POST /forgot_password
+// @route     POST /auth/forgot_password
 // @desc      Request password reset.
 // @access    Public
 router.post(
-  '/',
+  '/forgot_password',
   [
     // Data validations.
-    check('email', 'Email is required!').not().isEmpty(),
+    check('email', 'Email is required!').isEmail(),
   ],
   authController.request_password_reset
 );
 
-// @route     POST /reset_password
+// @route     POST /auth/reset_password
 // @desc      Reset password.
 // @access    Public
 router.post(
-  '/',
+  '/reset_password',
   [
     // Data validations.
-    check('email', 'Email is required!').not().isEmpty(),
+    check('token').notEmpty(),
+    check('newPassword')
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Password must be between 6 and 20 characters long!')
+      .matches(/\d/)
+      .withMessage('Password must contain a number!'),
+    check('confirmedPassword').notEmpty(),
   ],
   authController.reset_password
 );

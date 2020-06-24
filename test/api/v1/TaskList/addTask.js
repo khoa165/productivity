@@ -23,6 +23,7 @@ module.exports = addTask = () => {
         username: 'harry165',
         email: 'harry@gmail.com',
         password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       taskUser1 = {
         name: 'task created by user 1',
@@ -57,6 +58,7 @@ module.exports = addTask = () => {
         username: 'khoa165',
         email: 'khoa@gmail.com',
         password: 'abc123',
+        confirmedPassword: 'abc123',
       };
       taskUser2 = {
         name: 'task created by user 2',

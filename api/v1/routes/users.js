@@ -22,10 +22,11 @@ router.post(
       ),
     check('email', 'Please enter a valid email!').isEmail(),
     check('password')
-      .isLength({ min: 6 })
-      .withMessage('Password must be at least 6 characters long!')
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Password must be between 6 and 20 characters long!')
       .matches(/\d/)
       .withMessage('Password must contain a number!'),
+    check('confirmedPassword').notEmpty(),
   ],
   userController.register
 );
