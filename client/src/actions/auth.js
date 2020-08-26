@@ -9,8 +9,8 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
 } from './types';
-import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
+import { toast } from 'react-toastify';
 
 const API = 'api/v1';
 
@@ -39,7 +39,12 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register user.
-export const register = ({ username, email, password }) => async (dispatch) => {
+export const register = ({
+  username,
+  email,
+  password,
+  confirmedPassword,
+}) => async (dispatch) => {
   // Request headers.
   const config = {
     headers: {
@@ -48,7 +53,7 @@ export const register = ({ username, email, password }) => async (dispatch) => {
   };
 
   // User data.
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({ username, email, password, confirmedPassword });
 
   try {
     // Send request to API endpoint.
@@ -66,7 +71,7 @@ export const register = ({ username, email, password }) => async (dispatch) => {
     // Loop through errors and call reducer to set alert.
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg));
     }
 
     // Call reducer to indicate fail registration.
@@ -100,11 +105,12 @@ export const login = ({ credential, password }) => async (dispatch) => {
 
     // Call reducer to load user.
     dispatch(loadUser());
+    toast.success('You successfully signed in!');
   } catch (err) {
     // Loop through errors and call reducer to set alert.
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg));
     }
 
     // Call reducer to indicate fail login.

@@ -1,0 +1,145 @@
+/*!
+
+ =========================================================
+ * Black Dashboard Pro - v1.1.1
+ =========================================================
+
+ * Product Page: https://themes.getbootstrap.com/product/black-dashboard-pro-premium-bootstrap-4-admin/
+ * Copyright 2020 Creative Tim (http://www.creative-tim.com)
+
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ */
+
+// Core
+
+@import './scss/custom/functions';
+@import './scss/bootstrap/functions';
+
+@import './scss/custom/variables';
+@import './scss/bootstrap/variables';
+
+@import './scss/custom/mixins';
+@import './scss/bootstrap/mixins';
+
+// Bootstrap components
+
+@import './scss/bootstrap/root';
+@import './scss/bootstrap/reboot';
+@import './scss/bootstrap/type';
+@import './scss/bootstrap/images';
+@import './scss/bootstrap/code';
+@import './scss/bootstrap/grid';
+@import './scss/bootstrap/tables';
+@import './scss/bootstrap/forms';
+@import './scss/bootstrap/buttons';
+@import './scss/bootstrap/transitions';
+@import './scss/bootstrap/dropdown';
+@import './scss/bootstrap/button-group';
+@import './scss/bootstrap/input-group';
+@import './scss/bootstrap/custom-forms';
+@import './scss/bootstrap/nav';
+@import './scss/bootstrap/navbar';
+@import './scss/bootstrap/card';
+@import './scss/bootstrap/breadcrumb';
+@import './scss/bootstrap/pagination';
+@import './scss/bootstrap/badge';
+@import './scss/bootstrap/jumbotron';
+@import './scss/bootstrap/alert';
+@import './scss/bootstrap/progress';
+@import './scss/bootstrap/media';
+@import './scss/bootstrap/list-group';
+@import './scss/bootstrap/close';
+@import './scss/bootstrap/modal';
+@import './scss/bootstrap/tooltip';
+@import './scss/bootstrap/popover';
+@import './scss/bootstrap/carousel';
+@import './scss/bootstrap/utilities';
+@import './scss/bootstrap/print';
+
+// Custom components
+
+@import './scss/custom/reboot.scss';
+@import './scss/custom/global.scss';
+@import './scss/custom/utilities.scss';
+@import './scss/custom/alerts.scss';
+@import './scss/custom/avatars.scss';
+@import './scss/custom/badge.scss';
+@import './scss/custom/buttons.scss';
+@import './scss/custom/close.scss';
+@import './scss/custom/custom-forms.scss';
+@import './scss/custom/dropdown.scss';
+@import './scss/custom/footer.scss';
+@import './scss/custom/forms.scss';
+@import './scss/custom/grid.scss';
+@import './scss/custom/icons.scss';
+@import './scss/custom/images.scss';
+@import './scss/custom/input-group.scss';
+@import './scss/custom/info-areas.scss';
+@import './scss/custom/modal.scss';
+@import './scss/custom/nav.scss';
+@import './scss/custom/navbar.scss';
+@import './scss/custom/pagination.scss';
+@import './scss/custom/tabs.scss';
+@import './scss/custom/pills.scss';
+@import './scss/custom/popover.scss';
+@import './scss/custom/progress.scss';
+@import './scss/custom/type.scss';
+@import './scss/custom/tables';
+@import './scss/custom/checkboxes-radio';
+@import './scss/custom/fixed-plugin';
+@import './scss/custom/sidebar-and-main-panel.scss';
+@import './scss/custom/misc.scss';
+@import './scss/custom/rtl.scss';
+@import './scss/custom/timeline.scss';
+
+// Vendor / Plugins
+
+@import './scss/custom/vendor/plugin-datetimepicker.scss';
+@import './scss/custom/vendor/plugin-nouislider.scss';
+@import './scss/custom/vendor/plugin-fullcalendar.scss';
+@import './scss/custom/vendor/plugin-sweetalert2.scss';
+@import './scss/custom/vendor/plugin-bootstrap-switch.scss';
+@import './scss/custom/vendor/plugin-bootstrap-select.scss';
+@import './scss/custom/vendor/plugin-jasny-fileupload.scss';
+@import './scss/custom/vendor/plugin-tagsinput.scss';
+@import './scss/custom/vendor/plugin-perfect-scrollbar.scss';
+@import './scss/custom/vendor/plugin-jquery.jvectormap.scss';
+@import './scss/custom/vendor/plugin-datatables.net.scss';
+@import './scss/custom/vendor/plugin-animate-bootstrap-notify.scss';
+@import './scss/custom/vendor/plugin-card-wizard.scss';
+@import './scss/custom/vendor/plugin-chartjs.scss';
+
+// example pages and sections
+
+@import './scss/custom/example-pages.scss';
+
+// light mode
+
+@import './scss/custom/white-content.scss';
+
+// Cards
+
+@import './scss/custom/card';
+@import './scss/custom/cards/card-chart';
+@import './scss/custom/cards/card-map';
+@import './scss/custom/cards/card-user';
+@import './scss/custom/cards/card-task';
+@import './scss/custom/cards/card-animation-on-hover';
+@import './scss/custom/cards/card-collapse';
+@import './scss/custom/cards/card-contributions';
+@import './scss/custom/cards/card-lock';
+@import './scss/custom/cards/card-pricing';
+@import './scss/custom/cards/card-profile';
+@import './scss/custom/cards/card-plain';
+@import './scss/custom/cards/card-register';
+@import './scss/custom/cards/card-stats';
+@import './scss/custom/cards/card-subcategories';
+@import './scss/custom/cards/card-testimonials';
+@import './scss/custom/cards/card-wizard';
+
+// React Differences
+@import './scss/react/react-differences';

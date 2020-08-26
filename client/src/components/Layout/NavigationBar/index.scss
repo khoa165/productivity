@@ -1,0 +1,11 @@
+@import '../../../styles/variables/';
+
+#navbar {
+  font-weight: bolder;
+  &.navbar {
+    background: $brand-brown;
+  }
+  .nav-link {
+    color: #fff;
+  }
+}

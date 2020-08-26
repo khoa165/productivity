@@ -1,0 +1,45 @@
+#profileForm {
+  input[type='text'] {
+    padding: 20px;
+    font-size: 18px;
+  }
+
+  textarea {
+    font-size: 16px;
+    padding-top: 5px;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid black;
+  }
+
+  .main-form .form-group {
+    margin: 20px 0;
+
+    &.inline-form-input {
+      margin: 5px 0;
+    }
+  }
+
+  .media-link-input {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px 0;
+
+    .social-media-icon-wrapper {
+      width: 30px;
+    }
+
+    .form-group {
+      width: 90%;
+    }
+
+    .social-media-icon-wrapper,
+    .form-group {
+      display: inline-block;
+    }
+  }
+}

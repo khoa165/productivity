@@ -3,18 +3,16 @@ import { Route, Switch } from 'react-router-dom';
 
 // Routing components.
 import PrivateRoute from '../routing/PrivateRoute';
-// Authentication components.
-import Register from '../auth/Register';
-import Login from '../auth/Login';
 // Page component.
-import NotFound from '../pages/NotFound';
+import NotFound from '../Pages/NotFound';
 // Layout components.
-import NavigationBar from '../layout/NavigationBar';
-import Alerts from '../layout/Alerts';
+import NavigationBar from '../Layout/NavigationBar';
 // Dashboard component.
-import Dashboard from '../dashboard/Dashboard';
+import Dashboard from '../Dashboard';
 // Profile form components.
-import ProfileForm from '../profile_forms/ProfileForm';
+import ProfileForm from '../Profile/ProfileForm';
+
+import * as ROUTES from '../../constants/routes';
 
 // Library component.
 import { Container } from 'reactstrap';
@@ -24,12 +22,14 @@ const Routes = () => {
     <Fragment>
       <NavigationBar />
       <Container className='my-5'>
-        <Alerts />
         <Switch>
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/login' component={Login} />
-          <PrivateRoute exact path='/dashboard' component={Dashboard} />
-          <PrivateRoute exact path='/profile/update' component={ProfileForm} />
+          <PrivateRoute exact path={ROUTES.HOME} component={Dashboard} />
+          <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
+          <PrivateRoute
+            exact
+            path={ROUTES.PROFILE_UPDATE}
+            component={ProfileForm}
+          />
           <Route component={NotFound} />
         </Switch>
       </Container>

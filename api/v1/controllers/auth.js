@@ -49,14 +49,16 @@ module.exports = {
       // Retrieve user using id, exclude password when return.
       const user = await User.findById(req.user.id).select('-password');
       if (!user) {
-        return res.status(404).json({ msg: 'User not found!' });
+        return res.status(404).json({ errors: [{ msg: 'User not found!' }] });
       }
 
       return res.status(200).json(user);
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
@@ -109,7 +111,9 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
@@ -169,7 +173,9 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
@@ -247,7 +253,9 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
