@@ -1,0 +1,11 @@
+@mixin custom-width($number) {
+  .width-#{$number} {
+    width: #{$number}% !important;
+  }
+}
+
+@mixin custom-width-px($number) {
+  .width-#{$number}px {
+    width: #{$number}px !important;
+  }
+}

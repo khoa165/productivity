@@ -1,0 +1,4 @@
+@import '../mixins/margin';
+
+@include custom-margin($top, 20);
+@include custom-margin($top, 10);

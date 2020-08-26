@@ -88,7 +88,9 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
