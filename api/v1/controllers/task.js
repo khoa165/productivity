@@ -13,7 +13,7 @@ module.exports = {
     }
 
     // Destructuring data from request body.
-    const { taskId, name, stage, deadline, link } = req.body;
+    const { taskId, name, stage, deadline, link, note } = req.body;
 
     try {
       let task;
@@ -27,6 +27,7 @@ module.exports = {
             stage,
             deadline,
             link,
+            note,
           },
           {
             new: true,
@@ -38,7 +39,7 @@ module.exports = {
         }
       } else {
         // Create new task, link author and save.
-        task = new Task({ name, stage, deadline, link });
+        task = new Task({ name, stage, deadline, link, note });
         task.author = req.user.id;
         await task.save();
       }
@@ -46,7 +47,32 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       return res.status(500).json({
-        error: 'Unexpected server error happened. Please try again later!',
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
+      });
+    }
+  },
+
+  getUserDefaultTasks: async (req, res, _next) => {
+    try {
+      // Get default tasks of current authenticated user.
+      const tasks = await Task.find({
+        author: req.user.id,
+        is_default: true,
+      });
+
+      // Check and return tasks array if exists.
+      if (!tasks) {
+        return res.status(404).json({ msg: 'Tasks not found!' });
+      }
+      return res.status(200).json(tasks);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).json({
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
       });
     }
   },
