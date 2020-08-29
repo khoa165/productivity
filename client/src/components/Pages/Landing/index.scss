@@ -7,7 +7,7 @@
     no-repeat center center;
   background-size: cover;
   text-align: center;
-  color: #eee;
+  color: $light-grey-3;
 
   .overlay {
     background: rgba(200, 120, 120, 0.2);
@@ -37,13 +37,13 @@
     font-weight: bold;
     font-size: 60px;
     margin-bottom: 10px;
-    color: $brand-dark-brown;
-    text-shadow: 3px 2px 2px white;
+    color: $dark-brown;
+    text-shadow: 3px 2px 2px $white;
   }
 
   .brand-tagline {
     font-style: italic;
-    color: white;
+    color: $white;
     font-size: 16px;
     margin-bottom: 20px;
   }

@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Middlewares.
 const auth = require('../../../middleware/auth');
-const verifyURLs = require('../../../middleware/verifyURLs');
+// const verifyURLs = require('../../../middleware/verifyURLs');
 
 // Validation.
 const { check, validationResult } = require('express-validator');
@@ -25,14 +25,18 @@ router.get('/me', auth, async (req, res) => {
 
     // Check and return profile if exists.
     if (!profile) {
-      return res.status(404).json({ msg: 'Profile not found!' });
+      return res.status(404).json({
+        errors: [{ msg: 'Profile not found!' }],
+      });
     }
     return res.status(200).json(profile);
   } catch (err) {
     console.error(err.message);
-    return res
-      .status(500)
-      .send('Unexpected server error happened. Please try again later!');
+    return res.status(500).json({
+      errors: [
+        { msg: 'Unexpected server error happened. Please try again later!' },
+      ],
+    });
   }
 });
 
@@ -164,9 +168,11 @@ router.post(
       return res.status(200).json(profile);
     } catch (err) {
       console.error(err.message);
-      return res
-        .status(500)
-        .send('Unexpected server error happened. Please try again later!');
+      return res.status(500).json({
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
+      });
     }
   }
 );
@@ -193,14 +199,18 @@ router.get('/:username', async (req, res) => {
 
     // Check and return profile only if exists and visible set to true.
     if (!profile || !profile.visible) {
-      return res.status(404).json({ msg: 'Profile not found!' });
+      return res.status(404).json({
+        errors: [{ msg: 'Profile not found!' }],
+      });
     }
     return res.status(200).json(profile);
   } catch (err) {
     console.error(err.message);
-    return res
-      .status(500)
-      .send('Unexpected server error happened. Please try again later!');
+    return res.status(500).json({
+      errors: [
+        { msg: 'Unexpected server error happened. Please try again later!' },
+      ],
+    });
   }
 });
 
@@ -219,9 +229,11 @@ router.delete('/', auth, async (req, res) => {
     });
   } catch (err) {
     console.error(err.message);
-    return res
-      .status(500)
-      .send('Unexpected server error happened. Please try again later!');
+    return res.status(500).json({
+      errors: [
+        { msg: 'Unexpected server error happened. Please try again later!' },
+      ],
+    });
   }
 });
 

@@ -4,11 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 // Routing components.
 import PrivateRoute from '../routing/PrivateRoute';
 // Page component.
+import Products from '../Pages/Products';
 import NotFound from '../Pages/NotFound';
 // Layout components.
 import NavigationBar from '../Layout/NavigationBar';
 // Dashboard component.
 import Dashboard from '../Dashboard';
+// TaskManagement component.
+import TasksView from '../TaskManagement';
 // Profile form components.
 import ProfileForm from '../Profile/ProfileForm';
 
@@ -23,13 +26,14 @@ const Routes = () => {
       <NavigationBar />
       <Container className='my-5'>
         <Switch>
-          <PrivateRoute exact path={ROUTES.HOME} component={Dashboard} />
+          <PrivateRoute exact path={ROUTES.HOME} component={Products} />
           <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
           <PrivateRoute
             exact
             path={ROUTES.PROFILE_UPDATE}
             component={ProfileForm}
           />
+          <PrivateRoute exact path={ROUTES.TASKS_VIEW} component={TasksView} />
           <Route component={NotFound} />
         </Switch>
       </Container>

@@ -22,10 +22,14 @@ router.post(
       check('name', 'Task name is required!').notEmpty(),
       check('stage')
         .optional()
-        .isIn(['New', 'In progress', 'Done', 'Cancelled'])
+        .isIn(['New', 'In progress', 'Done', 'Cancelled', 'Postponed'])
         .withMessage(
           'Stage must be either New, In progress, Done or Cancelled!'
         ),
+      check('note')
+        .optional()
+        .isString()
+        .withMessage('Deadline is not a valid date!'),
       check('deadline')
         .optional()
         .isISO8601()
@@ -41,5 +45,10 @@ router.post(
   ],
   taskController.create
 );
+
+// @route     GET /tasks
+// @desc      Get authenticated user's tasks.
+// @access    Private
+router.get('/', auth, taskController.getUserDefaultTasks);
 
 module.exports = router;

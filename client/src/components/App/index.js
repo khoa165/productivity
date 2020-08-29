@@ -28,7 +28,7 @@ if (localStorage.token) {
 
 const App = () => {
   useEffect(() => {
-    document.body.classList.add('white-content');
+    // document.body.classList.add('white-content');
     store.dispatch(loadUser());
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`
