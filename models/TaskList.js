@@ -38,7 +38,7 @@ const TaskListSchema = new mongoose.Schema({
   },
   stage: {
     type: String,
-    enum: ['New', 'In progress', 'Done', 'Cancelled'],
+    enum: ['New', 'In progress', 'Done', 'Cancelled', 'Postponed'],
   },
   deadline: Date,
   link: String,

@@ -1,0 +1,50 @@
+@import '../../../styles/variables/';
+@import '../../../styles/mixins/resize';
+
+#landing-page {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1456324504439-367cee3b3c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
+    no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  color: $light-grey-3;
+
+  .overlay {
+    background: rgba(200, 120, 120, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .content {
+    background: rgba(156, 85, 24, 0.7);
+    margin-top: 35vh;
+    padding: 40px 0;
+
+    @include resize(null, $md-max) {
+      margin-top: 25vh;
+      padding: 20px 15px;
+    }
+  }
+
+  .btn {
+    width: 150px;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: $dark-brown;
+    text-shadow: 3px 2px 2px $white;
+  }
+
+  .brand-tagline {
+    font-style: italic;
+    color: $white;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+@import '../../../styles/variables/';
+
+#navbar {
+  font-weight: bolder;
+  &.navbar {
+    background: $brown;
+  }
+  .nav-link {
+    color: $white;
+  }
+
+  &.navbar .navbar-brand {
+    margin-left: 0;
+  }
+}

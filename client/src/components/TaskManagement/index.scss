@@ -1,0 +1,131 @@
+@import '../../styles/variables';
+
+#taskManagementPage {
+  .card-header {
+    .title {
+      font-size: 16px;
+    }
+
+    .card-category {
+      margin-right: 20px;
+      text-transform: uppercase;
+    }
+
+    .icon-settings-gear-63 {
+      font-size: 18px;
+    }
+  }
+
+  td {
+    padding: 10px 0;
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  .taskStageColumn {
+    width: 22%;
+  }
+
+  .badge {
+    width: 70%;
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  .taskStageDropdown {
+    .btn {
+      width: 78%;
+      position: relative;
+      text-align: left;
+      padding-left: 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+
+      &:after {
+        position: absolute;
+        right: 20px !important;
+        border-width: 6px;
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: -15px !important;
+      left: 84% !important;
+      right: -25%;
+
+      -webkit-transform: translate(-200px, 0);
+      -ms-transform: translate(-200px, 0);
+      transform: translate(-200px, 0);
+
+      &:before,
+      &:after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        content: '';
+        top: 25px;
+        left: -6px !important;
+        border-width: 0px 12px 12px 0;
+        border-color: transparent $white transparent transparent;
+        transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+      }
+    }
+
+    .dropdown-item {
+      text-transform: uppercase;
+
+      &.active-stage {
+        background: $brown;
+        color: $white;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .taskNameColumn {
+    font-size: 16px;
+  }
+
+  .taskDeadlineColumn {
+    width: 18%;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .editIconColumn,
+  .confirmIconColumn,
+  .cancelIconColumn {
+    width: 2%;
+    text-align: center;
+  }
+
+  .editIconColumn {
+    .currentlyEdited i,
+    i:hover {
+      color: $white;
+    }
+  }
+
+  .confirmIconColumn {
+    .currentlyEdited i,
+    i:hover {
+      color: $green !important;
+    }
+  }
+
+  .cancelIconColumn {
+    padding-right: 10px;
+
+    .currentlyEdited i,
+    i:hover {
+      color: $red !important;
+    }
+  }
+}

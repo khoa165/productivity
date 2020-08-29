@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+
+.authenticate-form {
+  background: $white;
+  border: 1px solid #d8dee2;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 15px 15px 20px 15px;
+
+  .btn {
+    color: $white;
+  }
+}
+
+.other-account-action {
+  background: $white;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 15px;
+
+  p {
+    color: $dark-grey;
+    margin-right: 10px;
+    margin: 0;
+  }
+
+  .action-link {
+    color: $brown;
+    text-transform: uppercase;
+    border-bottom: 3px solid $brown;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.other-account-action p {
+  display: inline-block;
+}
+
+.form-heading {
+  color: $brown !important;
+  text-align: center;
+  font-weight: bold;
+}

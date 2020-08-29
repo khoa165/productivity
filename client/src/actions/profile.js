@@ -1,12 +1,12 @@
 import axios from 'axios';
 import {
   GET_PROFILE,
-  UPDATE_PROFILE,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
 } from './types';
-import { setAlert } from './alert';
+import { toast } from 'react-toastify';
+import * as ROUTES from '../constants/routes';
 
 const API = 'api/v1';
 
@@ -51,16 +51,11 @@ export const createProfile = (formData, history, edit = false) => async (
       payload: res.data,
     });
 
-    dispatch(
-      setAlert(
-        edit
-          ? 'Profile updated successfully!'
-          : 'Profile created successfully!',
-        'success'
-      )
+    toast.success(
+      edit ? 'Profile updated successfully!' : 'Profile created successfully!'
     );
 
-    history.push('/dashboard');
+    history.push(ROUTES.DASHBOARD);
     // if (!edit) {
     //   history.push('/dashboard');
     // }
@@ -68,7 +63,7 @@ export const createProfile = (formData, history, edit = false) => async (
     // Loop through errors and call reducer to set alert.
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg));
     }
 
     // Call reducer to indicate error.
@@ -88,7 +83,7 @@ export const deleteAccount = () => async (dispatch) => {
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
 
-      dispatch(setAlert('Your account has been permanently deleted!'));
+      toast.warn('Your account has been permanently deleted!');
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,

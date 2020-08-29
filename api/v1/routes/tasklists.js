@@ -22,7 +22,7 @@ router.post(
       check('name', 'Task list name is required!').notEmpty(),
       check('stage')
         .optional()
-        .isIn(['New', 'In progress', 'Done', 'Cancelled'])
+        .isIn(['New', 'In progress', 'Done', 'Cancelled', 'Postponed'])
         .withMessage(
           'Stage must be either New, In progress, Done or Cancelled!'
         ),
