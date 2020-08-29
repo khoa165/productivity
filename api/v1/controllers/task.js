@@ -13,14 +13,14 @@ module.exports = {
     }
 
     // Destructuring data from request body.
-    const { taskId, name, stage, deadline, link, note } = req.body;
+    const { id, name, stage, deadline, link, note } = req.body;
 
     try {
       let task;
-      if (taskId) {
+      if (id) {
         task = await Task.findOneAndUpdate(
           {
-            _id: taskId,
+            _id: id,
           },
           {
             name,
@@ -35,7 +35,9 @@ module.exports = {
         );
 
         if (!task) {
-          return res.status(404).json({ msg: 'Task not found!' });
+          return res.status(404).json({
+            errors: [{ msg: 'Task not found!' }],
+          });
         }
       } else {
         // Create new task, link author and save.
@@ -64,7 +66,9 @@ module.exports = {
 
       // Check and return tasks array if exists.
       if (!tasks) {
-        return res.status(404).json({ msg: 'Tasks not found!' });
+        return res.status(404).json({
+          errors: [{ msg: 'Tasks not found!' }],
+        });
       }
       return res.status(200).json(tasks);
     } catch (err) {

@@ -1,5 +1,6 @@
 import {
   GET_DEFAULT_TASKS,
+  UPDATE_TASK,
   SET_CURRENT_EDITED_TASK,
   CLEAR_CURRENT_EDITED_TASK,
 } from '../actions/types';
@@ -20,6 +21,15 @@ export default function (state = initialState, action) {
     case GET_DEFAULT_TASKS:
       // Set isAuthenticated to true, loading to false and set user.
       return { ...state, loading: false, defaultTasks: payload };
+    case UPDATE_TASK:
+      // Set isAuthenticated to true, loading to false and set user.
+      return {
+        ...state,
+        loading: false,
+        defaultTasks: state.defaultTasks.map((task) =>
+          task._id === payload.id ? payload : task
+        ),
+      };
     case SET_CURRENT_EDITED_TASK:
       return {
         ...state,

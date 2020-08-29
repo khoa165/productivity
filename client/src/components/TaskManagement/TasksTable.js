@@ -30,6 +30,7 @@ class TasksTable extends SortingTable {
       currentEditedTask,
       setCurrentEditedTask,
       clearCurrentEditedTask,
+      updateTask,
     } = this.props;
     const { bodyData, column } = this.state;
 
@@ -72,13 +73,16 @@ class TasksTable extends SortingTable {
               <TaskRowCurrentlyEdited
                 task={task}
                 key={key}
+                unique={key}
                 setCurrentEditedTask={setCurrentEditedTask}
                 clearCurrentEditedTask={clearCurrentEditedTask}
+                updateTask={updateTask}
               />
             ) : (
               <TaskRow
                 task={task}
                 key={key}
+                unique={key}
                 badgeColorBasedOnStage={this.badgeColorBasedOnStage}
                 setCurrentEditedTask={setCurrentEditedTask}
                 clearCurrentEditedTask={clearCurrentEditedTask}
@@ -98,8 +102,21 @@ TasksTable.propTypes = {
       text: PropTypes.string.isRequired,
     })
   ).isRequired,
-  tbody: PropTypes.object.isRequired,
-  task: PropTypes.object.isRequired,
+  tbody: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      stage: PropTypes.string.isRequired,
+      note: PropTypes.string,
+      created_at: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  task: PropTypes.object,
+  currentEditedTask: PropTypes.string,
+  setCurrentEditedTask: PropTypes.func.isRequired,
+  clearCurrentEditedTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
 };
 
 export default TasksTable;

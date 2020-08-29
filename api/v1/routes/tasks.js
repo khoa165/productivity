@@ -24,7 +24,7 @@ router.post(
         .optional()
         .isIn(['New', 'In progress', 'Done', 'Cancelled', 'Postponed'])
         .withMessage(
-          'Stage must be either New, In progress, Done or Cancelled!'
+          'Stage must be either New, In progress, Done, Cancelled, or Postponed!'
         ),
       check('note')
         .optional()
