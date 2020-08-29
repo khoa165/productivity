@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   getDefaultTasks,
+  updateTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
 } from '../../actions/task';
@@ -21,6 +22,7 @@ import './index.scss';
 
 const TasksView = ({
   getDefaultTasks,
+  updateTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
   task: { defaultTasks, currentEditedTask, loading },
@@ -76,6 +78,7 @@ const TasksView = ({
               setCurrentEditedTask={setCurrentEditedTask}
               clearCurrentEditedTask={clearCurrentEditedTask}
               currentEditedTask={currentEditedTask}
+              updateTask={updateTask}
             />
           )}
         </CardBody>
@@ -99,6 +102,7 @@ const mapFunctionsToProps = {
   getDefaultTasks,
   setCurrentEditedTask,
   clearCurrentEditedTask,
+  updateTask,
 };
 
 export default connect(mapStateToProps, mapFunctionsToProps)(TasksView);

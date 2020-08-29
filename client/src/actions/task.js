@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
   GET_DEFAULT_TASKS,
+  UPDATE_TASK,
   SET_CURRENT_EDITED_TASK,
   CLEAR_CURRENT_EDITED_TASK,
 } from './types';
@@ -16,6 +17,29 @@ export const getDefaultTasks = () => async (dispatch) => {
     // Call reducer to load tasks into state.
     dispatch({
       type: GET_DEFAULT_TASKS,
+      payload: res.data,
+    });
+  } catch (err) {
+    // Call reducer to indicate error.
+  }
+};
+
+// Update task.
+export const updateTask = (formData) => async (dispatch) => {
+  try {
+    // Request headers.
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    // Send request to API endpoints.
+    const res = await axios.post(`/${API}/tasks`, formData, config);
+
+    // Call reducer to load tasks into state.
+    dispatch({
+      type: UPDATE_TASK,
       payload: res.data,
     });
   } catch (err) {

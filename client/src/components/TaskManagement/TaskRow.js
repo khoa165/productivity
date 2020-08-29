@@ -4,14 +4,14 @@ import moment from 'moment';
 import { UncontrolledTooltip, Button, Badge } from 'reactstrap';
 
 const TaskRow = ({
-  key,
+  unique,
   task,
   badgeColorBasedOnStage,
   setCurrentEditedTask,
   clearCurrentEditedTask,
 }) => {
   return (
-    <tr key={key}>
+    <tr>
       <td className='taskStageColumn'>
         <Badge color={badgeColorBasedOnStage(task.stage)}>{task.stage}</Badge>
       </td>
@@ -25,32 +25,32 @@ const TaskRow = ({
       <td className='editIconColumn'>
         <Button
           color='link'
-          id={`editTaskTooltip${key}`}
+          id={`editTaskTooltip${unique}`}
           onClick={() => setCurrentEditedTask(task._id)}
         >
           <i className='tim-icons icon-pencil' />
         </Button>
-        <UncontrolledTooltip delay={0} target={`editTaskTooltip${key}`}>
+        <UncontrolledTooltip delay={0} target={`editTaskTooltip${unique}`}>
           Edit Task
         </UncontrolledTooltip>
       </td>
       <td className='confirmIconColumn'>
-        <Button color='link' id={`confirmTaskTooltip${key}`}>
+        <Button color='link' id={`confirmTaskTooltip${unique}`}>
           <i className='fas fa-check-circle' />
         </Button>
-        <UncontrolledTooltip delay={0} target={`confirmTaskTooltip${key}`}>
+        <UncontrolledTooltip delay={0} target={`confirmTaskTooltip${unique}`}>
           Confirm change
         </UncontrolledTooltip>
       </td>
       <td className='cancelIconColumn'>
         <Button
           color='link'
-          id={`cancelTaskTooltip${key}`}
+          id={`cancelTaskTooltip${unique}`}
           onClick={() => clearCurrentEditedTask(task.id)}
         >
           <i className='fas fa-times-circle' />
         </Button>
-        <UncontrolledTooltip delay={0} target={`cancelTaskTooltip${key}`}>
+        <UncontrolledTooltip delay={0} target={`cancelTaskTooltip${unique}`}>
           Cancel change
         </UncontrolledTooltip>
       </td>
