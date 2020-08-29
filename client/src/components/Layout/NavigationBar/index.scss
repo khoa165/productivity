@@ -3,9 +3,13 @@
 #navbar {
   font-weight: bolder;
   &.navbar {
-    background: $brand-brown;
+    background: $brown;
   }
   .nav-link {
-    color: #fff;
+    color: $white;
+  }
+
+  &.navbar .navbar-brand {
+    margin-left: 0;
   }
 }

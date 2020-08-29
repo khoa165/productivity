@@ -7,6 +7,12 @@ const TaskSchema = new mongoose.Schema({
     ref: 'user',
   },
 
+  // Every task has an author/owner.
+  task_list: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'task_list',
+  },
+
   // Basic info.
   name: {
     type: String,
@@ -14,10 +20,16 @@ const TaskSchema = new mongoose.Schema({
   },
   stage: {
     type: String,
-    enum: ['New', 'In progress', 'Done', 'Cancelled'],
+    enum: ['New', 'In progress', 'Done', 'Cancelled', 'Postponed'],
+    default: 'New',
   },
   deadline: Date,
   link: String,
+  is_default: {
+    type: Boolean,
+    default: true,
+  },
+  note: String,
 
   // Task created.
   created_at: {

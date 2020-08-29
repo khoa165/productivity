@@ -1,34 +1,34 @@
 @import '../../styles/variables';
 
 .authenticate-form {
-  background: white;
+  background: $white;
   border: 1px solid #d8dee2;
   border-radius: 10px;
   margin-top: 10px;
   padding: 15px 15px 20px 15px;
 
   .btn {
-    color: white;
+    color: $white;
   }
 }
 
 .other-account-action {
-  background: white;
+  background: $white;
   border: 1px solid #d8dee2;
   border-radius: 5px;
   margin-top: 20px;
   padding: 15px;
 
   p {
-    color: $grey;
+    color: $dark-grey;
     margin-right: 10px;
     margin: 0;
   }
 
   .action-link {
-    color: $brand-brown;
+    color: $brown;
     text-transform: uppercase;
-    border-bottom: 3px solid $brand-brown;
+    border-bottom: 3px solid $brown;
 
     &:hover {
       font-weight: bold;
@@ -41,7 +41,7 @@
 }
 
 .form-heading {
-  color: $brand-brown !important;
+  color: $brown !important;
   text-align: center;
   font-weight: bold;
 }

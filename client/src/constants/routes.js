@@ -10,6 +10,8 @@ export const PROFILE_UPDATE = '/profile/update';
 
 export const ACCOUNT = '/account';
 
+export const TASKS_VIEW = '/tasks';
+
 export const ADMIN = '/admin';
 export const ADMIN_MANAGE_USERS = '/admin/users';
 export const ADMIN_MANAGE_USER = '/admin/users/:id';
