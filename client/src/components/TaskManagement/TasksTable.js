@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import SortingTable from '../Layout/SortingTable';
 import TaskRow from './TaskRow';
 import TaskRowCurrentlyEdited from './TaskRowCurrentlyEdited';
-import { Table } from 'reactstrap';
+import { Table, UncontrolledTooltip } from 'reactstrap';
 
 class TasksTable extends SortingTable {
   badgeColorBasedOnStage = (stage) => {
@@ -107,11 +107,15 @@ class TasksTable extends SortingTable {
             <td colspan='5'>
               <div className='line-break'></div>
               <i
+                id='addTaskIconButton'
                 className='fas fa-plus'
                 onClick={() => addNewTaskPlaceholderTask()}
               />
             </td>
           </tr>
+          <UncontrolledTooltip delay={0} target='addTaskIconButton'>
+            Add new task
+          </UncontrolledTooltip>
         </tbody>
       </Table>
     );

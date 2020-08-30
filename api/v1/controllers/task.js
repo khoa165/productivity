@@ -80,4 +80,33 @@ module.exports = {
       });
     }
   },
+
+  deleteTask: async (req, res, _next) => {
+    try {
+      const task = await Task.findById(req.params.id);
+
+      if (!task) {
+        return res.status(404).json({
+          errors: [{ msg: 'Tasks not found!' }],
+        });
+      }
+
+      // Check if task belongs to current authenticated user.
+      if (task.author.toString() !== req.user.id) {
+        return res.status(404).json({
+          errors: [{ msg: 'You are not authorized to perform this action!' }],
+        });
+      }
+
+      await task.remove();
+      return res.status(200).json({ msg: 'Task removed successfully!' });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).json({
+        errors: [
+          { msg: 'Unexpected server error happened. Please try again later!' },
+        ],
+      });
+    }
+  },
 };
