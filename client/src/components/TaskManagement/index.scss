@@ -16,7 +16,7 @@
     }
   }
 
-  td {
+  td.majorColumn {
     padding: 10px 0;
 
     &:focus {
@@ -25,18 +25,18 @@
   }
 
   .taskStageColumn {
-    width: 22%;
+    width: 18%;
   }
 
   .badge {
-    width: 70%;
+    width: 80%;
     padding: 10px 0;
     font-size: 16px;
   }
 
   .taskStageDropdown {
     .btn {
-      width: 78%;
+      width: 80%;
       position: relative;
       text-align: left;
       padding-left: 20px;
@@ -53,8 +53,8 @@
     .dropdown-menu {
       position: absolute;
       top: -15px !important;
-      left: 84% !important;
-      right: -25%;
+      left: 85% !important;
+      right: -70%;
 
       -webkit-transform: translate(-200px, 0);
       -ms-transform: translate(-200px, 0);
@@ -94,28 +94,70 @@
   }
 
   .taskDeadlineColumn {
-    width: 18%;
+    width: 20%;
     text-align: center;
     font-size: 15px;
   }
 
+  .currentlyEditedRow .taskDeadlineColumn {
+    width: 27%;
+    padding: 30px;
+  }
+
+  .rdt input {
+    padding: 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid $blue;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $dark-grey;
+      opacity: 1;
+    }
+  }
+
+  .date-picker-wrapper {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      color: $dark-grey;
+      pointer-events: none;
+
+      &:hover {
+        color: $dark-grey;
+      }
+    }
+  }
+
+  .rdtPicker {
+    color: black;
+  }
+
   .editIconColumn,
+  .deleteIconColumn,
   .confirmIconColumn,
   .cancelIconColumn {
-    width: 2%;
+    width: 1.5%;
     text-align: center;
   }
 
-  .editIconColumn {
-    .currentlyEdited i,
+  .editIconColumn,
+  .deleteIconColumn {
     i:hover {
       color: $white;
     }
   }
 
   .confirmIconColumn {
-    .currentlyEdited i,
-    i:hover {
+    i {
       color: $green !important;
     }
   }
@@ -123,8 +165,7 @@
   .cancelIconColumn {
     padding-right: 10px;
 
-    .currentlyEdited i,
-    i:hover {
+    i {
       color: $red !important;
     }
   }

@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
 import CustomAnimatedInput from '../Layout/Input';
+import ReactDatetime from 'react-datetime';
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -10,13 +11,11 @@ import {
   UncontrolledTooltip,
   Button,
   Label,
-  Form,
 } from 'reactstrap';
 
 const TaskRowCurrentlyEdited = ({
   unique,
   task,
-  setCurrentEditedTask,
   clearCurrentEditedTask,
   updateTask,
 }) => {
@@ -28,36 +27,45 @@ const TaskRowCurrentlyEdited = ({
     name: task.name,
     note: task.note,
     stage: task.stage,
-    deadline: task.deadline,
+    deadline: task.deadline ? task.deadline : null,
     link: task.link,
   });
 
   // Destructuring.
-  const { name, note, stage } = data;
+  const { id, name, note, stage, deadline, link } = data;
 
   // Event listener for change in input fields.
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
-
-  const onChangeStage = (newStage) => setData({ ...data, stage: newStage });
+  const onDateChange = (date) => setData({ ...data, deadline: date });
+  const onStageChange = (newStage) => setData({ ...data, stage: newStage });
 
   // Event listener for form submission.
   const onSubmit = (e) => {
     e.preventDefault();
-    updateTask(data);
+    const submittedData = {};
+    if (name) submittedData.name = name;
+    if (note) submittedData.note = note;
+    if (stage) submittedData.stage = stage;
+    if (deadline) submittedData.deadline = deadline;
+    if (link) submittedData.link = link;
+    submittedData.id = id;
+    console.log(deadline);
+    updateTask(submittedData);
   };
 
   return (
-    <tr>
-      <td className='taskStageColumn'>
+    <tr className='currentlyEditedRow'>
+      <td className='majorColumn taskStageColumn'>
         <UncontrolledDropdown direction='right' className='taskStageDropdown'>
           <DropdownToggle caret color='danger' task-toggle='dropdown'>
             {stage}
           </DropdownToggle>
           <DropdownMenu>
-            {allStages.map((option) => (
+            {allStages.map((option, k) => (
               <DropdownItem
                 className={option === stage ? 'active-stage' : ''}
-                onClick={() => onChangeStage(option)}
+                onClick={() => onStageChange(option)}
+                key={k}
               >
                 {option}
               </DropdownItem>
@@ -65,7 +73,7 @@ const TaskRowCurrentlyEdited = ({
           </DropdownMenu>
         </UncontrolledDropdown>
       </td>
-      <td className='taskNameColumn'>
+      <td className='majorColumn taskNameColumn'>
         <Fragment>
           <div className='animatedInputFormGroup'>
             <CustomAnimatedInput
@@ -89,27 +97,27 @@ const TaskRowCurrentlyEdited = ({
           </div>
         </Fragment>
       </td>
-      <td className='taskDeadlineColumn'>
-        <Moment format='YYYY - MM - DD'>{moment.utc(task.deadline)}</Moment>
+      <td className='majorColumn taskDeadlineColumn'>
+        <div className='date-picker-wrapper'>
+          <ReactDatetime
+            inputProps={{
+              className: 'form-control',
+              placeholder: 'Select deadline for task',
+              type: 'text',
+              name: 'deadline',
+            }}
+            dateFormat='HH:mm | ddd, MMM Do, YYYY'
+            timeFormat='HH:mm | ddd, MMM Do, YYYY'
+            value={deadline}
+            onChange={onDateChange}
+          />
+          <i className='fas fa-chevron-down' />
+        </div>
       </td>
-      <td className='editIconColumn'>
-        <Button
-          color='link'
-          id={`editTaskTooltip${unique}`}
-          onClick={() => setCurrentEditedTask(task._id)}
-          className='currentlyEdited'
-        >
-          <i className='tim-icons icon-pencil' />
-        </Button>
-        <UncontrolledTooltip delay={0} target={`editTaskTooltip${unique}`}>
-          Edit Task
-        </UncontrolledTooltip>
-      </td>
-      <td className='confirmIconColumn'>
+      <td className='majorColumn confirmIconColumn'>
         <Button
           color='link'
           id={`confirmTaskTooltip${unique}`}
-          className='currentlyEdited'
           type='submit'
           onClick={onSubmit}
         >
@@ -119,12 +127,11 @@ const TaskRowCurrentlyEdited = ({
           Confirm change
         </UncontrolledTooltip>
       </td>
-      <td className='cancelIconColumn'>
+      <td className='majorColumn cancelIconColumn'>
         <Button
           color='link'
           id={`cancelTaskTooltip${unique}`}
           onClick={() => clearCurrentEditedTask(task.id)}
-          className='currentlyEdited'
         >
           <i className='fas fa-times-circle' />
         </Button>
