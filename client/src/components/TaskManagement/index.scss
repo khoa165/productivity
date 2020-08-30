@@ -1,6 +1,10 @@
 @import '../../styles/variables';
 
 #taskManagementPage {
+  .card-tasks {
+    height: fit-content;
+  }
+
   .card-header {
     .title {
       font-size: 16px;
