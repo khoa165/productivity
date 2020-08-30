@@ -5,10 +5,11 @@ import { UncontrolledTooltip, Button, Badge } from 'reactstrap';
 
 const TaskRow = ({
   unique,
-  task: { stage, note, name, deadline, _id },
+  task,
   badgeColorBasedOnStage,
   setCurrentEditedTask,
 }) => {
+  const { stage, note, name, deadline } = task;
   return (
     <tr>
       <td className='majorColumn taskStageColumn'>
@@ -31,7 +32,7 @@ const TaskRow = ({
         <Button
           color='link'
           id={`editTaskTooltip${unique}`}
-          onClick={() => setCurrentEditedTask(_id)}
+          onClick={() => setCurrentEditedTask(task._id)}
         >
           <i className='tim-icons icon-pencil' />
         </Button>

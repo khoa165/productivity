@@ -6,6 +6,8 @@ import {
   updateTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
+  addNewTaskPlaceholderTask,
+  removeTaskPlaceholderTask,
 } from '../../actions/task';
 import Spinner from '../Layout/Spinner';
 import TasksTable from './TasksTable';
@@ -20,12 +22,14 @@ import {
 } from 'reactstrap';
 import './index.scss';
 
-const TasksView = ({
+const TasksManagement = ({
   getDefaultTasks,
   updateTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
-  task: { defaultTasks, currentEditedTask, loading },
+  addNewTaskPlaceholderTask,
+  removeTaskPlaceholderTask,
+  task: { defaultTasks, currentEditedTask, loading, taskPlaceholders },
 }) => {
   useEffect(() => {
     getDefaultTasks();
@@ -78,7 +82,10 @@ const TasksView = ({
               setCurrentEditedTask={setCurrentEditedTask}
               clearCurrentEditedTask={clearCurrentEditedTask}
               currentEditedTask={currentEditedTask}
+              taskPlaceholders={taskPlaceholders}
               updateTask={updateTask}
+              addNewTaskPlaceholderTask={addNewTaskPlaceholderTask}
+              removeTaskPlaceholderTask={removeTaskPlaceholderTask}
             />
           )}
         </CardBody>
@@ -87,7 +94,7 @@ const TasksView = ({
   );
 };
 
-TasksView.propTypes = {
+TasksManagement.propTypes = {
   getDefaultTasks: PropTypes.func.isRequired,
   setCurrentEditedTask: PropTypes.func.isRequired,
   clearCurrentEditedTask: PropTypes.func.isRequired,
@@ -103,6 +110,8 @@ const mapFunctionsToProps = {
   setCurrentEditedTask,
   clearCurrentEditedTask,
   updateTask,
+  addNewTaskPlaceholderTask,
+  removeTaskPlaceholderTask,
 };
 
-export default connect(mapStateToProps, mapFunctionsToProps)(TasksView);
+export default connect(mapStateToProps, mapFunctionsToProps)(TasksManagement);

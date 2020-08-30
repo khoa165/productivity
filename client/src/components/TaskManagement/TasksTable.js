@@ -28,9 +28,12 @@ class TasksTable extends SortingTable {
     const {
       thead,
       currentEditedTask,
+      taskPlaceholders,
       setCurrentEditedTask,
       clearCurrentEditedTask,
       updateTask,
+      addNewTaskPlaceholderTask,
+      removeTaskPlaceholderTask,
     } = this.props;
     const { bodyData, column } = this.state;
 
@@ -74,9 +77,9 @@ class TasksTable extends SortingTable {
                 task={task}
                 key={key}
                 unique={key}
-                setCurrentEditedTask={setCurrentEditedTask}
                 clearCurrentEditedTask={clearCurrentEditedTask}
                 updateTask={updateTask}
+                edit={true}
               />
             ) : (
               <TaskRow
@@ -85,10 +88,30 @@ class TasksTable extends SortingTable {
                 unique={key}
                 badgeColorBasedOnStage={this.badgeColorBasedOnStage}
                 setCurrentEditedTask={setCurrentEditedTask}
-                clearCurrentEditedTask={clearCurrentEditedTask}
               />
             );
           })}
+          {taskPlaceholders.map((placeholderId) => {
+            return (
+              <TaskRowCurrentlyEdited
+                key={placeholderId}
+                task={{ _id: placeholderId, stage: 'New' }}
+                unique={placeholderId}
+                clearCurrentEditedTask={removeTaskPlaceholderTask}
+                updateTask={updateTask}
+                edit={false}
+              />
+            );
+          })}
+          <tr className='addTaskIconButton'>
+            <td colspan='5'>
+              <div className='line-break'></div>
+              <i
+                className='fas fa-plus'
+                onClick={() => addNewTaskPlaceholderTask()}
+              />
+            </td>
+          </tr>
         </tbody>
       </Table>
     );
