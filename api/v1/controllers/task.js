@@ -17,34 +17,58 @@ module.exports = {
 
     try {
       let task;
+
       if (id) {
-        task = await Task.findOneAndUpdate(
-          {
-            _id: id,
-          },
-          {
-            name,
-            stage,
-            deadline,
-            link,
-            note,
-          },
-          {
-            new: true,
-          }
-        );
+        task = await Task.findById(id);
 
         if (!task) {
           return res.status(404).json({
-            errors: [{ msg: 'Task not found!' }],
+            errors: [{ msg: 'Tasks not found!' }],
           });
         }
+
+        // Check if task belongs to current authenticated user.
+        if (task.author.toString() !== req.user.id) {
+          return res.status(404).json({
+            errors: [{ msg: 'You are not authorized to perform this action!' }],
+          });
+        }
+
+        task.name = name;
+        task.stage = stage;
+        task.deadline = deadline;
+        task.link = link;
+        task.note = note;
+        await task.save();
+
+        // task = await Task.findOneAndUpdate(
+        //   {
+        //     _id: id,
+        //   },
+        //   {
+        //     name,
+        //     stage,
+        //     deadline,
+        //     link,
+        //     note,
+        //   },
+        //   {
+        //     new: true, // return document after update
+        //   }
+        // );
+
+        // if (!task) {
+        //   return res.status(404).json({
+        //     errors: [{ msg: 'Task not found!' }],
+        //   });
+        // }
       } else {
         // Create new task, link author and save.
         task = new Task({ name, stage, deadline, link, note });
         task.author = req.user.id;
         await task.save();
       }
+
       return res.status(200).json(task);
     } catch (err) {
       console.error(err.message);
