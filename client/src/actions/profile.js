@@ -22,11 +22,11 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    // Call reducer to indicate error.
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
+    // Loop through errors and notify user.
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => toast.error(error.msg));
+    }
   }
 };
 
@@ -65,12 +65,6 @@ export const createProfile = (formData, history, edit = false) => async (
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
-
-    // Call reducer to indicate error.
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
   }
 };
 
@@ -85,10 +79,11 @@ export const deleteAccount = () => async (dispatch) => {
 
       toast.warn('Your account has been permanently deleted!');
     } catch (err) {
-      dispatch({
-        type: PROFILE_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status },
-      });
+      // Loop through errors and notify user.
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => toast.error(error.msg));
+      }
     }
   }
 };

@@ -1,6 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import Moment from 'react-moment';
-import moment from 'moment';
 import CustomAnimatedInput from '../Layout/Input';
 import ReactDatetime from 'react-datetime';
 import {
@@ -18,6 +16,7 @@ const TaskRowCurrentlyEdited = ({
   task,
   clearCurrentEditedTask,
   updateTask,
+  edit,
 }) => {
   const allStages = ['New', 'In progress', 'Done', 'Cancelled', 'Postponed'];
 
@@ -49,8 +48,7 @@ const TaskRowCurrentlyEdited = ({
     if (deadline) submittedData.deadline = deadline;
     if (link) submittedData.link = link;
     submittedData.id = id;
-    console.log(deadline);
-    updateTask(submittedData);
+    updateTask(submittedData, edit);
   };
 
   return (
@@ -131,7 +129,7 @@ const TaskRowCurrentlyEdited = ({
         <Button
           color='link'
           id={`cancelTaskTooltip${unique}`}
-          onClick={() => clearCurrentEditedTask(task.id)}
+          onClick={() => clearCurrentEditedTask(id)}
         >
           <i className='fas fa-times-circle' />
         </Button>
