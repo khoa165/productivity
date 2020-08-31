@@ -12,6 +12,7 @@ import {
   NavItem,
   Collapse,
 } from 'reactstrap';
+import * as ROUTES from '../../../constants/routes';
 import './index.scss';
 
 const NavigationBar = ({
@@ -23,14 +24,20 @@ const NavigationBar = ({
   const authLinks = (
     <Fragment>
       <NavItem>
-        <Link to='/dashboard' className='nav-link'>
-          <i className='fas fa-chart-line mr-1' />
+        <Link to={ROUTES.HOME} className='nav-link'>
+          <i className='fas fa-tools mr-2' />
+          Features
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link to={ROUTES.DASHBOARD} className='nav-link'>
+          <i className='fas fa-chart-line mr-2' />
           Dashboard
         </Link>
       </NavItem>
       <NavItem>
         <Link to='#!' className='nav-link' onClick={logout}>
-          <i className='fas fa-sign-out-alt mr-1' />
+          <i className='fas fa-sign-out-alt mr-2' />
           Logout
         </Link>
       </NavItem>
@@ -40,12 +47,12 @@ const NavigationBar = ({
   const guestLinks = (
     <Fragment>
       <NavItem>
-        <Link to='/register' className='nav-link'>
+        <Link to={ROUTES.SIGN_UP} className='nav-link'>
           Register
         </Link>
       </NavItem>
       <NavItem>
-        <Link to='/login' className='nav-link'>
+        <Link to={ROUTES.SIGN_IN} className='nav-link'>
           Login
         </Link>
       </NavItem>
@@ -58,7 +65,7 @@ const NavigationBar = ({
   return (
     <Navbar dark expand='md' id='navbar'>
       <Container>
-        <NavbarBrand tag={Link} to={'/'}>
+        <NavbarBrand tag={Link} to={ROUTES.HOME}>
           <i className={`${icon} mr-1`} /> {title}
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

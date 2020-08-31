@@ -1,5 +1,6 @@
 import React from 'react';
 import { UncontrolledTooltip, Button } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 const BookmarkRow = ({
   unique,
@@ -8,6 +9,11 @@ const BookmarkRow = ({
   deleteBookmark,
 }) => {
   const { note, name, link } = bookmark;
+  const copyLinkToClipboard = () => {
+    navigator.clipboard.writeText(link);
+    toast.success('Link copied to clipboard!');
+  };
+
   return (
     <tr>
       <td className='majorColumn bookmarkNameColumn'>
@@ -15,7 +21,34 @@ const BookmarkRow = ({
         {note && <p className='text-muted bookmarkNote'>{note}</p>}
       </td>
       <td className='majorColumn bookmarkLinkColumn'>
-        <p>{link}</p>
+        <a href={link} target='_blank'>
+          {link}
+        </a>
+      </td>
+      <td className='majorColumn copyIconColumn'>
+        <Button
+          color='link'
+          id={`copyBookmarkTooltip${unique}`}
+          onClick={copyLinkToClipboard}
+        >
+          <i className='fas fa-copy' />
+        </Button>
+        <UncontrolledTooltip delay={0} target={`copyBookmarkTooltip${unique}`}>
+          Copy link to clipboard
+        </UncontrolledTooltip>
+      </td>
+      <td className='majorColumn visitIconColumn'>
+        <a
+          href={link}
+          target='_blank'
+          id={`visitBookmarkTooltip${unique}`}
+          className='btn btn-link'
+        >
+          <i className='fas fa-share' />
+        </a>
+        <UncontrolledTooltip delay={0} target={`visitBookmarkTooltip${unique}`}>
+          Visit link
+        </UncontrolledTooltip>
       </td>
       <td className='majorColumn editIconColumn'>
         <Button
@@ -35,7 +68,8 @@ const BookmarkRow = ({
           id={`deleteBookmarkTooltip${unique}`}
           onClick={() => deleteBookmark(bookmark._id)}
         >
-          <i className='fas fa-trash' />
+          {/* <i className='fas fa-trash' /> */}
+          <i className='tim-icons icon-trash-simple' />
         </Button>
         <UncontrolledTooltip
           delay={0}
