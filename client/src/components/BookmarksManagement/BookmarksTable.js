@@ -79,7 +79,7 @@ class BookmarksTable extends SortingTable {
             return (
               <BookmarkRowCurrentlyEdited
                 key={placeholderId}
-                bookmark={{ _id: placeholderId, stage: 'New' }}
+                bookmark={{ _id: placeholderId }}
                 unique={placeholderId}
                 clearCurrentEditedBookmark={removeBookmarkPlaceholder}
                 updateBookmark={updateBookmark}
@@ -88,7 +88,7 @@ class BookmarksTable extends SortingTable {
             );
           })}
           <tr className='addBookmarkIconButton'>
-            <td colSpan='5'>
+            <td colSpan='4'>
               <div className='line-break'></div>
               <i
                 id='addBookmarkIconButton'
@@ -117,7 +117,6 @@ BookmarksTable.propTypes = {
     PropTypes.shape({
       author: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      stage: PropTypes.string.isRequired,
       note: PropTypes.string,
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,

@@ -1,7 +1,5 @@
 import React from 'react';
-import Moment from 'react-moment';
-import moment from 'moment';
-import { UncontrolledTooltip, Button, Badge } from 'reactstrap';
+import { UncontrolledTooltip, Button } from 'reactstrap';
 
 const BookmarkRow = ({
   unique,
@@ -12,12 +10,13 @@ const BookmarkRow = ({
   const { note, name, link } = bookmark;
   return (
     <tr>
-      <td className='majorColumn bookmarkStageColumn'>ABC</td>
       <td className='majorColumn bookmarkNameColumn'>
         <p>{name}</p>
         {note && <p className='text-muted bookmarkNote'>{note}</p>}
       </td>
-      <td className='majorColumn bookmarkDeadlineColumn'>abc</td>
+      <td className='majorColumn bookmarkLinkColumn'>
+        <p>{link}</p>
+      </td>
       <td className='majorColumn editIconColumn'>
         <Button
           color='link'

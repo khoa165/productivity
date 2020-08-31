@@ -1,15 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import CustomAnimatedInput from '../Layout/Input';
-import ReactDatetime from 'react-datetime';
-import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledTooltip,
-  Button,
-  Label,
-} from 'reactstrap';
+import { UncontrolledTooltip, Button, Label } from 'reactstrap';
 
 const BookmarkRowCurrentlyEdited = ({
   unique,
@@ -39,14 +30,15 @@ const BookmarkRowCurrentlyEdited = ({
     if (name) submittedData.name = name;
     if (note) submittedData.note = note;
     if (link) submittedData.link = link;
-    submittedData.id = id;
+    if (edit) {
+      submittedData.id = id;
+    }
     updateBookmark(submittedData, edit);
   };
 
   return (
     <tr className='currentlyEditedRow'>
-      <td className='majorColumn bookmarkStageColumn'>ABC</td>
-      <td className='majorColumn bookmarkNameColumn'>
+      <td className='majorColumn bookmarkNameColumn contentColumn'>
         <Fragment>
           <div className='animatedInputFormGroup'>
             <CustomAnimatedInput
@@ -70,7 +62,18 @@ const BookmarkRowCurrentlyEdited = ({
           </div>
         </Fragment>
       </td>
-      <td className='majorColumn bookmarkDeadlineColumn'>abc</td>
+      <td className='majorColumn bookmarkLinkColumn contentColumn'>
+        <div className='animatedInputFormGroup'>
+          <CustomAnimatedInput
+            type='text'
+            name='link'
+            value={link}
+            id={`bookmarkLinkField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`bookmarkLinkField${unique}`}>Link</Label>
+        </div>
+      </td>
       <td className='majorColumn confirmIconColumn'>
         <Button
           color='link'

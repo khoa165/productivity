@@ -42,7 +42,7 @@ const TasksManagement = ({
   return loading && defaultTasks === null ? (
     <Spinner />
   ) : (
-    <div id='taskManagementPage'>
+    <div id='tasksManagementPage'>
       <Card className='card-tasks'>
         <CardHeader>
           <h6 className='title d-inline'>Tasks ({defaultTasks.length})</h6>
