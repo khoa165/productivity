@@ -11,5 +11,10 @@
 
   &.navbar .navbar-brand {
     margin-left: 0;
+
+    &:focus,
+    &:hover {
+      color: $white;
+    }
   }
 }
