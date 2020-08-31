@@ -37,7 +37,7 @@ const SignUpForm = ({ register, pathname }) => {
   };
 
   return (
-    <div className='authenticate-form'>
+    <div className='authenticate-form white-content'>
       <Form onSubmit={onSubmit} autoComplete='off'>
         <h3 className='form-heading mb-4'>Account Register</h3>
         <FormGroup>

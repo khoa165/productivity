@@ -9,7 +9,7 @@ import * as ROUTES from '../../../constants/routes';
 const SignInForm = withRouter(SignInFormBase);
 
 const SignIn = ({ pathname }) => (
-  <div className='authenticate-form'>
+  <div className='authenticate-form white-content'>
     <SignInForm pathname={pathname} />
     <ForgotPasswordAction pathname={pathname} />
     <SignUpAction pathname={pathname} />
