@@ -24,7 +24,7 @@ router.post(
         .optional()
         .isIn(['New', 'In progress', 'Done', 'Cancelled', 'Postponed'])
         .withMessage(
-          'Stage must be either New, In progress, Done or Cancelled!'
+          'Stage must be either New, In progress, Done, Cancelled, or Postponed!'
         ),
       check('note')
         .optional()
@@ -50,5 +50,10 @@ router.post(
 // @desc      Get authenticated user's tasks.
 // @access    Private
 router.get('/', auth, taskController.getUserDefaultTasks);
+
+// @route     DELETE /tasks/:id
+// @desc      Delete a task.
+// @access    Private
+router.delete('/:id', auth, taskController.deleteTask);
 
 module.exports = router;
