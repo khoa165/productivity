@@ -3,6 +3,7 @@ import {
   GET_DEFAULT_TASKS,
   ADD_NEW_DEFAULT_TASK,
   UPDATE_TASK,
+  DELETE_TASK,
   SET_CURRENT_EDITED_TASK,
   CLEAR_CURRENT_EDITED_TASK,
   ADD_NEW_TASK_PLACEHOLDER,
@@ -96,20 +97,40 @@ export const clearCurrentEditedTask = () => async (dispatch) => {
 export const addNewTaskPlaceholderTask = () => async (dispatch) => {
   const id = uuidv4();
 
-  // Call reducer to increment number of task placeholders.
+  // Call reducer to add new task placeholder.
   dispatch({
     type: ADD_NEW_TASK_PLACEHOLDER,
     payload: id,
   });
 };
 
-// Add placeholder for new task.
+// Remove a task placeholder.
 export const removeTaskPlaceholderTask = (placeholderId) => async (
   dispatch
 ) => {
-  // Call reducer to increment number of task placeholders.
+  // Call reducer to remove the task placeholder.
   dispatch({
     type: REMOVE_TASK_PLACEHOLDER,
     payload: placeholderId,
   });
+};
+
+// Delete task.
+export const deleteTask = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/${API}/tasks/${id}`);
+
+    dispatch({
+      type: DELETE_TASK,
+      payload: id,
+    });
+
+    toast.success('Task deleted successfully!');
+  } catch (err) {
+    // Loop through errors and notify user.
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => toast.error(error.msg));
+    }
+  }
 };
