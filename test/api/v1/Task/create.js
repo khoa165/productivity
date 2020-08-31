@@ -127,7 +127,7 @@ module.exports = create = () => {
             'value'
           );
           expect(res.body.errors[0].msg).to.equal(
-            'Stage must be either New, In progress, Done or Cancelled!'
+            'Stage must be either New, In progress, Done, Cancelled, or Postponed!'
           );
           expect(res.body.errors[0].param).to.equal('stage');
           expect(res.body.errors[0].value).to.equal(task.stage);
