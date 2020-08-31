@@ -111,7 +111,7 @@ module.exports = {
 
       if (!task) {
         return res.status(404).json({
-          errors: [{ msg: 'Tasks not found!' }],
+          errors: [{ msg: 'Task not found!' }],
         });
       }
 
