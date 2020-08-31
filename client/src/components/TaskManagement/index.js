@@ -35,6 +35,8 @@ const TasksManagement = ({
 }) => {
   useEffect(() => {
     getDefaultTasks();
+
+    // eslint-disable-next-line
   }, []);
 
   return loading && defaultTasks === null ? (
