@@ -47,7 +47,7 @@ const BookmarksManagement = ({
   return loading && defaultBookmarks === null ? (
     <Spinner />
   ) : (
-    <div id='bookmarkManagementPage'>
+    <div id='bookmarksManagementPage'>
       <Card className='card-tasks'>
         <CardHeader>
           <h6 className='title d-inline'>
@@ -84,11 +84,7 @@ const BookmarksManagement = ({
         <CardBody>
           {defaultBookmarks && (
             <BookmarksTable
-              thead={[
-                { text: 'Stage' },
-                { text: 'Name' },
-                { className: 'text-center', text: 'Deadline' },
-              ]}
+              thead={[{ text: 'Name' }, { text: 'Link' }]}
               tbody={defaultBookmarks}
               setCurrentEditedBookmark={setCurrentEditedBookmark}
               clearCurrentEditedBookmark={clearCurrentEditedBookmark}
