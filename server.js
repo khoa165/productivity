@@ -21,8 +21,6 @@ app.use(helmet());
 app.use(limiter);
 app.use(express.json({ extended: false }));
 
-app.get('/', (_req, res) => res.send('API Running'));
-
 // Define routes.
 const API = 'api/v1';
 app.use(`/${API}/auth`, require(`./${API}/routes/auth`));
