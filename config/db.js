@@ -7,8 +7,8 @@ if (process.env.NODE_ENV === 'production') {
   db = process.env.MONGO_URI_PROD;
 } else if (process.env.NODE_ENV === 'test') {
   console.log('Test environment...');
-  // db = process.env.MONGO_URI_DEV;
-  db = 'mongodb://localhost/productivity_testdb';
+  db = process.env.MONGO_URI_TEST;
+  // db = 'mongodb://localhost/productivity_testdb';
 } else {
   console.log('Development environment...');
   db = process.env.MONGO_URI_DEV;
