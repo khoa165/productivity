@@ -54,6 +54,6 @@ router.get('/', auth, taskController.getUserDefaultTasks);
 // @route     DELETE /tasks/:id
 // @desc      Delete a task.
 // @access    Private
-router.delete('/', auth, taskController.deleteTask);
+router.delete('/:id', auth, taskController.deleteTask);
 
 module.exports = router;

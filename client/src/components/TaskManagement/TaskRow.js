@@ -8,6 +8,7 @@ const TaskRow = ({
   task,
   badgeColorBasedOnStage,
   setCurrentEditedTask,
+  deleteTask,
 }) => {
   const { stage, note, name, deadline } = task;
   return (
@@ -41,7 +42,11 @@ const TaskRow = ({
         </UncontrolledTooltip>
       </td>
       <td className='majorColumn deleteIconColumn'>
-        <Button color='link' id={`deleteTaskTooltip${unique}`}>
+        <Button
+          color='link'
+          id={`deleteTaskTooltip${unique}`}
+          onClick={() => deleteTask(task._id)}
+        >
           <i className='fas fa-trash' />
         </Button>
         <UncontrolledTooltip delay={0} target={`deleteTaskTooltip${unique}`}>

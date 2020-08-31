@@ -32,6 +32,7 @@ class TasksTable extends SortingTable {
       setCurrentEditedTask,
       clearCurrentEditedTask,
       updateTask,
+      deleteTask,
       addNewTaskPlaceholderTask,
       removeTaskPlaceholderTask,
     } = this.props;
@@ -88,6 +89,7 @@ class TasksTable extends SortingTable {
                 unique={key}
                 badgeColorBasedOnStage={this.badgeColorBasedOnStage}
                 setCurrentEditedTask={setCurrentEditedTask}
+                deleteTask={deleteTask}
               />
             );
           })}
@@ -104,7 +106,7 @@ class TasksTable extends SortingTable {
             );
           })}
           <tr className='addTaskIconButton'>
-            <td colspan='5'>
+            <td colSpan='5'>
               <div className='line-break'></div>
               <i
                 id='addTaskIconButton'
@@ -144,6 +146,7 @@ TasksTable.propTypes = {
   setCurrentEditedTask: PropTypes.func.isRequired,
   clearCurrentEditedTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TasksTable;

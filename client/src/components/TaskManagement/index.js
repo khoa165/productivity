@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   getDefaultTasks,
   updateTask,
+  deleteTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
   addNewTaskPlaceholderTask,
@@ -25,6 +26,7 @@ import './index.scss';
 const TasksManagement = ({
   getDefaultTasks,
   updateTask,
+  deleteTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
   addNewTaskPlaceholderTask,
@@ -84,6 +86,7 @@ const TasksManagement = ({
               currentEditedTask={currentEditedTask}
               taskPlaceholders={taskPlaceholders}
               updateTask={updateTask}
+              deleteTask={deleteTask}
               addNewTaskPlaceholderTask={addNewTaskPlaceholderTask}
               removeTaskPlaceholderTask={removeTaskPlaceholderTask}
             />
@@ -110,6 +113,7 @@ const mapFunctionsToProps = {
   setCurrentEditedTask,
   clearCurrentEditedTask,
   updateTask,
+  deleteTask,
   addNewTaskPlaceholderTask,
   removeTaskPlaceholderTask,
 };
