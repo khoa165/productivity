@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
-const TaskSchema = new mongoose.Schema({
-  // Every task has an author/owner.
+const BookmarkSchema = new mongoose.Schema({
+  // Every bookmark has an author/owner.
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
 
-  // A task may belong to a task list.
-  task_list: {
+  // A bookmark may belong to a bookmark group.
+  bookmark_group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'task_list',
+    ref: 'bookmark_group',
   },
 
   // Basic info.
@@ -18,30 +18,27 @@ const TaskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  stage: {
+  link: {
     type: String,
-    enum: ['New', 'In progress', 'Done', 'Cancelled', 'Postponed'],
-    default: 'New',
+    required: true,
   },
-  deadline: Date,
-  link: String,
   is_default: {
     type: Boolean,
     default: true,
   },
   note: String,
 
-  // Task created.
+  // Bookmark created.
   created_at: {
     type: Date,
     default: Date.now,
   },
 
-  // Task last updated.
+  // Bookmark last updated.
   updated_at: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = Task = mongoose.model('task', TaskSchema);
+module.exports = Bookmark = mongoose.model('bookmark', BookmarkSchema);
