@@ -96,7 +96,7 @@ export const clearCurrentEditedBookmark = () => async (dispatch) => {
 };
 
 // Add placeholder for new bookmark.
-export const addNewBookmarkPlaceholderBookmark = () => async (dispatch) => {
+export const addNewBookmarkPlaceholder = () => async (dispatch) => {
   const id = uuidv4();
 
   // Call reducer to add new bookmark placeholder.
@@ -107,7 +107,7 @@ export const addNewBookmarkPlaceholderBookmark = () => async (dispatch) => {
 };
 
 // Remove a bookmark placeholder.
-export const removeBookmarkPlaceholderBookmark = (placeholderId) => async (
+export const removeBookmarkPlaceholder = (placeholderId) => async (
   dispatch
 ) => {
   // Call reducer to remove the bookmark placeholder.
