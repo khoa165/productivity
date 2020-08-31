@@ -3,6 +3,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 const connectDB = require('./config/db');
 const app = express();
 
@@ -30,6 +31,16 @@ app.use(`/${API}/profile`, require(`./${API}/routes/profile`));
 app.use(`/${API}/tasks`, require(`./${API}/routes/tasks`));
 app.use(`/${API}/tasklists`, require(`./${API}/routes/tasklists`));
 app.use(`/${API}/bookmarks`, require(`./${API}/routes/bookmarks`));
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (_req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  );
+}
 
 // Listening to app.
 const PORT = process.env.PORT || 5000;

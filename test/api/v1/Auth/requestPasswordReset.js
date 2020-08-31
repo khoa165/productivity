@@ -21,7 +21,7 @@ module.exports = requestPasswordReset = () => {
         .send(user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
-        .end((err, res) => {
+        .end((err, _res) => {
           if (err) return done(err);
           done();
         });
