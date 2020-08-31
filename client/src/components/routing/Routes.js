@@ -3,15 +3,23 @@ import { Route, Switch } from 'react-router-dom';
 
 // Routing components.
 import PrivateRoute from '../routing/PrivateRoute';
+
 // Page component.
 import Products from '../Pages/Products';
 import NotFound from '../Pages/NotFound';
+
 // Layout components.
 import NavigationBar from '../Layout/NavigationBar';
+
 // Dashboard component.
 import Dashboard from '../Dashboard';
-// TaskManagement component.
-import TasksManagement from '../TaskManagement';
+
+// Tasks management component.
+import TasksManagement from '../TasksManagement';
+
+// Bookmarks management component.
+import BookmarksManagement from '../BookmarksManagement';
+
 // Profile form components.
 import ProfileForm from '../Profile/ProfileForm';
 
@@ -41,7 +49,7 @@ const Routes = () => {
           <PrivateRoute
             exact
             path={ROUTES.BOOKMARKS_MANAGEMENT}
-            component={TasksManagement}
+            component={BookmarksManagement}
           />
           <Route component={NotFound} />
         </Switch>

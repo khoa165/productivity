@@ -7,13 +7,13 @@ import './index.scss';
 const products = [
   {
     route: ROUTES.TASKS_MANAGEMENT,
-    name: 'Task management',
+    name: 'Tasks management',
     illustration:
       'https://res.cloudinary.com/khoa165/image/upload/q_100/v1598466008/productivity/todolist.png',
   },
   {
     route: ROUTES.BOOKMARKS_MANAGEMENT,
-    name: 'Bookmark management',
+    name: 'Bookmarks management',
     illustration:
       'https://res.cloudinary.com/khoa165/image/upload/q_100/v1598878568/productivity/bookmark.png',
   },

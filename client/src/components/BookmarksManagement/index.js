@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  getDefaultTasks,
-  updateTask,
-  deleteTask,
-  setCurrentEditedTask,
-  clearCurrentEditedTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
-} from '../../actions/task';
+  getDefaultBookmarks,
+  updateBookmark,
+  deleteBookmark,
+  setCurrentEditedBookmark,
+  clearCurrentEditedBookmark,
+  addNewBookmarkPlaceholder,
+  removeBookmarkPlaceholder,
+} from '../../actions/bookmark';
 import Spinner from '../Layout/Spinner';
-import TasksTable from './TasksTable';
+import BookmarksTable from './BookmarksTable';
 import {
   Card,
   CardHeader,
@@ -23,29 +23,36 @@ import {
 } from 'reactstrap';
 import './index.scss';
 
-const TasksManagement = ({
-  getDefaultTasks,
-  updateTask,
-  deleteTask,
-  setCurrentEditedTask,
-  clearCurrentEditedTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
-  task: { defaultTasks, currentEditedTask, loading, taskPlaceholders },
+const BookmarksManagement = ({
+  getDefaultBookmarks,
+  updateBookmark,
+  deleteBookmark,
+  setCurrentEditedBookmark,
+  clearCurrentEditedBookmark,
+  addNewBookmarkPlaceholder,
+  removeBookmarkPlaceholder,
+  bookmark: {
+    defaultBookmarks,
+    currentEditedBookmark,
+    loading,
+    bookmarkPlaceholders,
+  },
 }) => {
   useEffect(() => {
-    getDefaultTasks();
+    getDefaultBookmarks();
 
     // eslint-disable-next-line
   }, []);
 
-  return loading && defaultTasks === null ? (
+  return loading && defaultBookmarks === null ? (
     <Spinner />
   ) : (
-    <div id='taskManagementPage'>
+    <div id='bookmarkManagementPage'>
       <Card className='card-tasks'>
         <CardHeader>
-          <h6 className='title d-inline'>Tasks ({defaultTasks.length})</h6>
+          <h6 className='title d-inline'>
+            Bookmarks ({defaultBookmarks.length})
+          </h6>
           <p className='card-category d-inline'>All</p>
           <p className='card-category d-inline'>Today</p>
           <p className='card-category d-inline'>Tomorrow</p>
@@ -75,22 +82,22 @@ const TasksManagement = ({
           </UncontrolledDropdown>
         </CardHeader>
         <CardBody>
-          {defaultTasks && (
-            <TasksTable
+          {defaultBookmarks && (
+            <BookmarksTable
               thead={[
                 { text: 'Stage' },
                 { text: 'Name' },
                 { className: 'text-center', text: 'Deadline' },
               ]}
-              tbody={defaultTasks}
-              setCurrentEditedTask={setCurrentEditedTask}
-              clearCurrentEditedTask={clearCurrentEditedTask}
-              currentEditedTask={currentEditedTask}
-              taskPlaceholders={taskPlaceholders}
-              updateTask={updateTask}
-              deleteTask={deleteTask}
-              addNewTaskPlaceholderTask={addNewTaskPlaceholderTask}
-              removeTaskPlaceholderTask={removeTaskPlaceholderTask}
+              tbody={defaultBookmarks}
+              setCurrentEditedBookmark={setCurrentEditedBookmark}
+              clearCurrentEditedBookmark={clearCurrentEditedBookmark}
+              currentEditedBookmark={currentEditedBookmark}
+              bookmarkPlaceholders={bookmarkPlaceholders}
+              updateBookmark={updateBookmark}
+              deleteBookmark={deleteBookmark}
+              addNewBookmarkPlaceholder={addNewBookmarkPlaceholder}
+              removeBookmarkPlaceholder={removeBookmarkPlaceholder}
             />
           )}
         </CardBody>
@@ -99,25 +106,28 @@ const TasksManagement = ({
   );
 };
 
-TasksManagement.propTypes = {
-  getDefaultTasks: PropTypes.func.isRequired,
-  setCurrentEditedTask: PropTypes.func.isRequired,
-  clearCurrentEditedTask: PropTypes.func.isRequired,
-  task: PropTypes.object.isRequired,
+BookmarksManagement.propTypes = {
+  getDefaultBookmarks: PropTypes.func.isRequired,
+  setCurrentEditedBookmark: PropTypes.func.isRequired,
+  clearCurrentEditedBookmark: PropTypes.func.isRequired,
+  bookmark: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  task: state.task,
+  bookmark: state.bookmark,
 });
 
 const mapFunctionsToProps = {
-  getDefaultTasks,
-  setCurrentEditedTask,
-  clearCurrentEditedTask,
-  updateTask,
-  deleteTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
+  getDefaultBookmarks,
+  setCurrentEditedBookmark,
+  clearCurrentEditedBookmark,
+  updateBookmark,
+  deleteBookmark,
+  addNewBookmarkPlaceholder,
+  removeBookmarkPlaceholder,
 };
 
-export default connect(mapStateToProps, mapFunctionsToProps)(TasksManagement);
+export default connect(
+  mapStateToProps,
+  mapFunctionsToProps
+)(BookmarksManagement);

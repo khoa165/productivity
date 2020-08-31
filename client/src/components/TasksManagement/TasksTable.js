@@ -33,8 +33,8 @@ class TasksTable extends SortingTable {
       clearCurrentEditedTask,
       updateTask,
       deleteTask,
-      addNewTaskPlaceholderTask,
-      removeTaskPlaceholderTask,
+      addNewTaskPlaceholder,
+      removeTaskPlaceholder,
     } = this.props;
     const { bodyData, column } = this.state;
 
@@ -99,7 +99,7 @@ class TasksTable extends SortingTable {
                 key={placeholderId}
                 task={{ _id: placeholderId, stage: 'New' }}
                 unique={placeholderId}
-                clearCurrentEditedTask={removeTaskPlaceholderTask}
+                clearCurrentEditedTask={removeTaskPlaceholder}
                 updateTask={updateTask}
                 edit={false}
               />
@@ -111,7 +111,7 @@ class TasksTable extends SortingTable {
               <i
                 id='addTaskIconButton'
                 className='fas fa-plus'
-                onClick={() => addNewTaskPlaceholderTask()}
+                onClick={() => addNewTaskPlaceholder()}
               />
             </td>
           </tr>

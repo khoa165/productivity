@@ -94,7 +94,7 @@ export const clearCurrentEditedTask = () => async (dispatch) => {
 };
 
 // Add placeholder for new task.
-export const addNewTaskPlaceholderTask = () => async (dispatch) => {
+export const addNewTaskPlaceholder = () => async (dispatch) => {
   const id = uuidv4();
 
   // Call reducer to add new task placeholder.
@@ -105,9 +105,7 @@ export const addNewTaskPlaceholderTask = () => async (dispatch) => {
 };
 
 // Remove a task placeholder.
-export const removeTaskPlaceholderTask = (placeholderId) => async (
-  dispatch
-) => {
+export const removeTaskPlaceholder = (placeholderId) => async (dispatch) => {
   // Call reducer to remove the task placeholder.
   dispatch({
     type: REMOVE_TASK_PLACEHOLDER,
