@@ -11,7 +11,7 @@ import NavigationBar from '../Layout/NavigationBar';
 // Dashboard component.
 import Dashboard from '../Dashboard';
 // TaskManagement component.
-import TasksView from '../TaskManagement';
+import TasksManagement from '../TaskManagement';
 // Profile form components.
 import ProfileForm from '../Profile/ProfileForm';
 
@@ -33,7 +33,16 @@ const Routes = () => {
             path={ROUTES.PROFILE_UPDATE}
             component={ProfileForm}
           />
-          <PrivateRoute exact path={ROUTES.TASKS_VIEW} component={TasksView} />
+          <PrivateRoute
+            exact
+            path={ROUTES.TASKS_MANAGEMENT}
+            component={TasksManagement}
+          />
+          <PrivateRoute
+            exact
+            path={ROUTES.BOOKMARKS_MANAGEMENT}
+            component={TasksManagement}
+          />
           <Route component={NotFound} />
         </Switch>
       </Container>

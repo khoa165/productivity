@@ -1,15 +1,19 @@
 import {
   GET_DEFAULT_TASKS,
+  ADD_NEW_DEFAULT_TASK,
+  UPDATE_TASK,
+  DELETE_TASK,
   SET_CURRENT_EDITED_TASK,
   CLEAR_CURRENT_EDITED_TASK,
+  ADD_NEW_TASK_PLACEHOLDER,
+  REMOVE_TASK_PLACEHOLDER,
 } from '../actions/types';
 
-// Get token, set isAuthenticated and user to null, set loading to true.
 const initialState = {
   defaultTasks: [],
   currentEditedTask: null,
   loading: true,
-  error: {},
+  taskPlaceholders: [],
 };
 
 export default function (state = initialState, action) {
@@ -18,8 +22,27 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_DEFAULT_TASKS:
-      // Set isAuthenticated to true, loading to false and set user.
       return { ...state, loading: false, defaultTasks: payload };
+    case ADD_NEW_DEFAULT_TASK:
+      return {
+        ...state,
+        loading: false,
+        defaultTasks: [...state.defaultTasks, payload],
+      };
+    case UPDATE_TASK:
+      return {
+        ...state,
+        loading: false,
+        defaultTasks: state.defaultTasks.map((task) =>
+          task._id === payload._id ? payload : task
+        ),
+      };
+    case DELETE_TASK:
+      return {
+        ...state,
+        loading: false,
+        defaultTasks: state.defaultTasks.filter((task) => task._id !== payload),
+      };
     case SET_CURRENT_EDITED_TASK:
       return {
         ...state,
@@ -29,6 +52,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currentEditedTask: null,
+      };
+    case ADD_NEW_TASK_PLACEHOLDER:
+      return {
+        ...state,
+        taskPlaceholders: [...state.taskPlaceholders, payload],
+      };
+    case REMOVE_TASK_PLACEHOLDER:
+      return {
+        ...state,
+        taskPlaceholders: state.taskPlaceholders.filter(
+          (placeholder) => placeholder !== payload
+        ),
       };
     default:
       // Do nothing.

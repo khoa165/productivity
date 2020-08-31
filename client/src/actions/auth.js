@@ -31,6 +31,12 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    // Loop through errors and notify user.
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => toast.error(error.msg));
+    }
+
     // Call reducer to indicate authentication error.
     dispatch({
       type: AUTH_ERROR,
@@ -67,8 +73,9 @@ export const register = ({
 
     // Call reducer to load user.
     dispatch(loadUser());
+    toast.success('You successfully created an account! Welcome to Coffee Up!');
   } catch (err) {
-    // Loop through errors and call reducer to set alert.
+    // Loop through errors and notify user.
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
@@ -105,15 +112,15 @@ export const login = ({ credential, password }) => async (dispatch) => {
 
     // Call reducer to load user.
     dispatch(loadUser());
-    toast.success('You successfully signed in!');
+    toast.success('You successfully signed in! Welcome back!');
   } catch (err) {
-    // Loop through errors and call reducer to set alert.
+    // Loop through errors and notify user.
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
 
-    // Call reducer to indicate fail login.
+    // Call reducer to remove auth token.
     dispatch({
       type: LOGIN_FAIL,
     });
