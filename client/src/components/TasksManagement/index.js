@@ -7,8 +7,8 @@ import {
   deleteTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
+  addNewTaskPlaceholder,
+  removeTaskPlaceholder,
 } from '../../actions/task';
 import Spinner from '../Layout/Spinner';
 import TasksTable from './TasksTable';
@@ -29,18 +29,20 @@ const TasksManagement = ({
   deleteTask,
   setCurrentEditedTask,
   clearCurrentEditedTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
+  addNewTaskPlaceholder,
+  removeTaskPlaceholder,
   task: { defaultTasks, currentEditedTask, loading, taskPlaceholders },
 }) => {
   useEffect(() => {
     getDefaultTasks();
+
+    // eslint-disable-next-line
   }, []);
 
   return loading && defaultTasks === null ? (
     <Spinner />
   ) : (
-    <div id='taskManagementPage'>
+    <div id='tasksManagementPage'>
       <Card className='card-tasks'>
         <CardHeader>
           <h6 className='title d-inline'>Tasks ({defaultTasks.length})</h6>
@@ -87,8 +89,8 @@ const TasksManagement = ({
               taskPlaceholders={taskPlaceholders}
               updateTask={updateTask}
               deleteTask={deleteTask}
-              addNewTaskPlaceholderTask={addNewTaskPlaceholderTask}
-              removeTaskPlaceholderTask={removeTaskPlaceholderTask}
+              addNewTaskPlaceholder={addNewTaskPlaceholder}
+              removeTaskPlaceholder={removeTaskPlaceholder}
             />
           )}
         </CardBody>
@@ -114,8 +116,8 @@ const mapFunctionsToProps = {
   clearCurrentEditedTask,
   updateTask,
   deleteTask,
-  addNewTaskPlaceholderTask,
-  removeTaskPlaceholderTask,
+  addNewTaskPlaceholder,
+  removeTaskPlaceholder,
 };
 
 export default connect(mapStateToProps, mapFunctionsToProps)(TasksManagement);

@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 
-#taskManagementPage {
+#tasksManagementPage {
   .card-tasks {
     height: fit-content;
   }
@@ -155,13 +155,13 @@
 
   .editIconColumn,
   .deleteIconColumn {
-    i:hover {
+    .btn:hover i {
       color: $white;
     }
   }
 
   .confirmIconColumn {
-    i {
+    .btn:hover i {
       color: $green !important;
     }
   }
@@ -169,7 +169,7 @@
   .cancelIconColumn {
     padding-right: 10px;
 
-    i {
+    .btn:hover i {
       color: $red !important;
     }
   }

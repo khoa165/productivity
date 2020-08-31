@@ -17,10 +17,8 @@ module.exports = {
 
     try {
       let task;
-
       if (id) {
         task = await Task.findById(id);
-
         if (!task) {
           return res.status(404).json({
             errors: [{ msg: 'Tasks not found!' }],
@@ -111,7 +109,7 @@ module.exports = {
 
       if (!task) {
         return res.status(404).json({
-          errors: [{ msg: 'Tasks not found!' }],
+          errors: [{ msg: 'Task not found!' }],
         });
       }
 

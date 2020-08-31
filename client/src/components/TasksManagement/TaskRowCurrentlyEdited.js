@@ -47,7 +47,9 @@ const TaskRowCurrentlyEdited = ({
     if (stage) submittedData.stage = stage;
     if (deadline) submittedData.deadline = deadline;
     if (link) submittedData.link = link;
-    submittedData.id = id;
+    if (edit) {
+      submittedData.id = id;
+    }
     updateTask(submittedData, edit);
   };
 

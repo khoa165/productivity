@@ -1,0 +1,113 @@
+@import '../../styles/variables';
+
+#bookmarksManagementPage {
+  .card-tasks {
+    height: fit-content;
+  }
+
+  .card-header {
+    .title {
+      font-size: 16px;
+    }
+
+    .card-category {
+      margin-right: 20px;
+      text-transform: uppercase;
+    }
+
+    .icon-settings-gear-63 {
+      font-size: 18px;
+    }
+  }
+
+  th.header {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+
+  td.majorColumn {
+    padding: 20px 0;
+
+    &.contentColumn {
+      padding: 10px 30px 10px 0;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  .bookmarkNameColumn {
+    font-size: 16px;
+    width: 50%;
+  }
+
+  .bookmarkLinkColumn {
+    font-size: 16px;
+    width: 50%;
+    padding: 20px;
+  }
+
+  .copyIconColumn,
+  .visitIconColumn,
+  .editIconColumn,
+  .deleteIconColumn,
+  .confirmIconColumn,
+  .cancelIconColumn {
+    width: 1.5%;
+    text-align: center;
+  }
+
+  .copyIconColumn,
+  .visitIconColumn,
+  .editIconColumn,
+  .deleteIconColumn {
+    .btn:hover i {
+      color: $white;
+    }
+  }
+
+  .confirmIconColumn {
+    .btn:hover ir {
+      color: $green !important;
+    }
+  }
+
+  .cancelIconColumn {
+    padding-right: 10px;
+
+    .btn:hover i {
+      color: $red !important;
+    }
+  }
+
+  .addBookmarkIconButton {
+    width: 100%;
+    height: 70px;
+
+    td {
+      position: relative;
+      padding: 0;
+    }
+
+    .line-break {
+      width: 100%;
+      height: 0;
+      border-bottom: 5px solid $brown;
+    }
+
+    i {
+      position: absolute;
+      top: 10px;
+      left: calc(50% - 25px - 20px);
+      font-size: 50px;
+      background: $dark-blue;
+      padding: 0 20px;
+      color: $brown;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+}
