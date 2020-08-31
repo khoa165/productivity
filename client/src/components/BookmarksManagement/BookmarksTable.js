@@ -88,7 +88,7 @@ class BookmarksTable extends SortingTable {
             );
           })}
           <tr className='addBookmarkIconButton'>
-            <td colSpan='4'>
+            <td colSpan='6'>
               <div className='line-break'></div>
               <i
                 id='addBookmarkIconButton'

@@ -21,7 +21,7 @@ const BookmarkRow = ({
         {note && <p className='text-muted bookmarkNote'>{note}</p>}
       </td>
       <td className='majorColumn bookmarkLinkColumn'>
-        <a href={link} target='_blank'>
+        <a href={link} target='_blank' rel='noopener noreferrer'>
           {link}
         </a>
       </td>
@@ -41,6 +41,7 @@ const BookmarkRow = ({
         <a
           href={link}
           target='_blank'
+          rel='noopener noreferrer'
           id={`visitBookmarkTooltip${unique}`}
           className='btn btn-link'
         >
