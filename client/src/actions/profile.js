@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  GET_PROFILE,
-  PROFILE_ERROR,
-  CLEAR_PROFILE,
-  ACCOUNT_DELETED,
-} from './types';
+import { GET_PROFILE, CLEAR_PROFILE, ACCOUNT_DELETED } from './types';
 import { toast } from 'react-toastify';
 import * as ROUTES from '../constants/routes';
 
