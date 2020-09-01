@@ -5,16 +5,16 @@ const supertestPrefix = require('supertest-prefix').default;
 const crypto = require('crypto');
 const app = require('../../../../server');
 
-module.exports = requestPasswordReset = () => {
-  describe('POST /auth/reset_password (requestPasswordReset)', () => {
+module.exports = resetPassword = () => {
+  describe('POST /auth/reset_password (resetPassword)', () => {
     const prefix = supertestPrefix('/api/v1');
     let user;
     let token;
 
     before((done) => {
       user = {
-        username: 'khoa165',
-        email: 'khoa165random@gmail.com',
+        username: 'harry165',
+        email: 'harry165random@gmail.com',
         password: 'abc123',
         confirmedPassword: 'abc123',
       };
@@ -101,7 +101,7 @@ module.exports = requestPasswordReset = () => {
           expect(res.statusCode).to.equal(200);
 
           const newLoginCredential = {
-            credential: 'khoa165',
+            credential: 'harry165',
             password: 'holagato123',
           };
           request(app)

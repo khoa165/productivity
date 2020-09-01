@@ -5,7 +5,7 @@ const supertestPrefix = require('supertest-prefix').default;
 const app = require('../../../../server');
 
 module.exports = requestPasswordReset = () => {
-  describe('POST /auth/reset_password (requestPasswordReset)', () => {
+  describe('POST /auth/forgot_password (requestPasswordReset)', () => {
     const prefix = supertestPrefix('/api/v1');
 
     before((done) => {
