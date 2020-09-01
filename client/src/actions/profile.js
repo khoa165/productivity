@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROFILE, CLEAR_PROFILE, ACCOUNT_DELETED } from './types';
+import { GET_PROFILE, CLEAR_PROFILE, ACCOUNT_DELETED, PROFILE_NOT_FOUND } from './types';
 import { toast } from 'react-toastify';
 import * as ROUTES from '../constants/routes';
 
@@ -19,7 +19,12 @@ export const getCurrentProfile = () => async (dispatch) => {
   } catch (err) {
     // Loop through errors and notify user.
     const errors = err.response.data.errors;
-    if (errors) {
+
+    if (errors && errors[0] && errors[0].msg === 'Profile not found!') {
+      dispatch({
+        type: PROFILE_NOT_FOUND,
+      });
+    } else if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
   }
