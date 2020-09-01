@@ -243,6 +243,7 @@ module.exports = {
       };
 
       smtpTransport.sendMail(emailData, function (err) {
+        if (err) console.log(err);
         if (err) throw err;
 
         return res.status(200).json({
