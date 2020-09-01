@@ -7,7 +7,7 @@ module.exports = auth = () => {
   describe('Auth routes', () => {
     getUser();
     login();
-    requestPasswordReset();
-    resetPassword();
+    // requestPasswordReset();
+    // resetPassword();
   });
 };

@@ -8,6 +8,6 @@ module.exports = routes = () => {
     user();
     auth();
     task();
-    tasklist();
+    // tasklist();
   });
 };

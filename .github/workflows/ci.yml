@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,6 +27,11 @@ jobs:
           npm run test
         env:
           CI: true
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
+          MAILER_SERVICE_PROVIDER: ${{ secrets.MAILER_SERVICE_PROVIDER }}
+          MAILER_EMAIL_ID: ${{ secrets.MAILER_EMAIL_ID }}
+          MAILER_EMAIL_PASSWORD: ${{ secrets.MAILER_EMAIL_PASSWORD }}
 
       - name: Run build command if exists
         run: |
@@ -37,4 +42,4 @@ jobs:
           git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
       - name: Deploy to Heroku
         run: |
-          git push heroku HEAD:master -f
+          git push heroku master
