@@ -59,7 +59,7 @@ export const updateJobApplication = (formData, edit = false) => async (
     } else {
       // Add job application
       dispatch({
-        type: ADD_NEW_DEFAULT_JOB_APPLICATION,
+        type: ADD_NEW_JOB_APPLICATION,
         payload: res.data,
       });
     }
