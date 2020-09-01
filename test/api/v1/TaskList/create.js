@@ -13,8 +13,8 @@ module.exports = create = () => {
 
     before((done) => {
       user = {
-        username: 'harry165',
-        email: 'harry@gmail.com',
+        username: 'holaharry165',
+        email: 'holaharry@gmail.com',
         password: 'abc123',
         confirmedPassword: 'abc123',
       };
