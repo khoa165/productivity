@@ -20,6 +20,9 @@ import TasksManagement from '../TasksManagement';
 // Bookmarks management component.
 import BookmarksManagement from '../BookmarksManagement';
 
+// Job applications tracker component.
+import JobApplicationsTracker from '../JobApplicationsTracker';
+
 // Profile form components.
 import ProfileForm from '../Profile/ProfileForm';
 
@@ -50,6 +53,11 @@ const Routes = () => {
             exact
             path={ROUTES.BOOKMARKS_MANAGEMENT}
             component={BookmarksManagement}
+          />
+          <PrivateRoute
+            exact
+            path={ROUTES.JOB_APPLICATIONS_TRACKER}
+            component={JobApplicationsTracker}
           />
           <Route component={NotFound} />
         </Switch>

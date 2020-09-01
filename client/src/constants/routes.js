@@ -12,6 +12,7 @@ export const ACCOUNT = '/account';
 
 export const TASKS_MANAGEMENT = '/tasks';
 export const BOOKMARKS_MANAGEMENT = '/bookmarks';
+export const JOB_APPLICATIONS_TRACKER = '/jobs';
 
 export const ADMIN = '/admin';
 export const ADMIN_MANAGE_USERS = '/admin/users';
