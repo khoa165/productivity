@@ -27,6 +27,7 @@ jobs:
           npm run test
         env:
           CI: true
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
 
       - name: Run build command if exists
         run: |
