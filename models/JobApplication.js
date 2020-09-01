@@ -33,15 +33,12 @@ const JobApplicationSchema = new mongoose.Schema({
     default: true,
   },
 
-  link: [
-    {
-      name: String,
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  linkName1: String,
+  linkUrl1: String,
+  linkName2: String,
+  linkUrl2: String,
+  linkName3: String,
+  linkUrl3: String,
 
   // Job application tracking created.
   created_at: {
