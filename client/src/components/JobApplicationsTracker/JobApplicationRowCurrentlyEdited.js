@@ -18,9 +18,17 @@ const JobApplicationRowCurrentlyEdited = ({
     position: jobApplication.position,
     jobDescriptions: jobApplication.jobDescriptions,
     requiredSkills: jobApplication.requiredSkills,
+    stage: jobApplication.stage,
     note: jobApplication.note,
     deadline1: jobApplication.deadline1,
     deadline2: jobApplication.deadline2,
+
+    linkName1: jobApplication.linkName1,
+    linkUrl1: jobApplication.linkUrl1,
+    linkName2: jobApplication.linkName2,
+    linkUrl2: jobApplication.linkUrl2,
+    // linkName3: jobApplication.linkName3,
+    // linkUrl3: jobApplication.linkUrl3,
   });
 
   // Destructuring.
@@ -35,6 +43,13 @@ const JobApplicationRowCurrentlyEdited = ({
     note,
     deadline1,
     deadline2,
+
+    linkName1,
+    linkUrl1,
+    linkName2,
+    linkUrl2,
+    // linkName3,
+    // linkUrl3,
   } = data;
 
   // Event listener for change in input fields.
@@ -54,6 +69,15 @@ const JobApplicationRowCurrentlyEdited = ({
     if (note) submittedData.note = note;
     if (deadline1) submittedData.deadline1 = deadline1;
     if (deadline2) submittedData.deadline2 = deadline2;
+
+    if (linkName1) submittedData.linkName1 = linkName1;
+    if (linkUrl1) submittedData.linkUrl1 = linkUrl1;
+    if (linkName2) submittedData.linkName2 = linkName2;
+    if (linkUrl2) submittedData.linkUrl2 = linkUrl2;
+    // if (linkName3) submittedData.linkName3 = linkName3;
+    // if (linkUrl3) submittedData.linkUrl3 = linkUrl3;
+
+    console.log(submittedData);
     if (edit) {
       submittedData.id = id;
     }
@@ -84,6 +108,50 @@ const JobApplicationRowCurrentlyEdited = ({
           <Label for={`companyWebsiteField${unique}`}>
             Company website URL
           </Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='linkUrl1'
+            value={linkUrl1}
+            placeholder='Any link you wanna save?'
+            id={`linkUrl1Field${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`linkUrl1Field${unique}`}>Link 1</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='linkName1'
+            value={linkName1}
+            placeholder='What is the link about?'
+            id={`linkName1Field${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`linkName1Field${unique}`}>Link name 1</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='linkUrl2'
+            value={linkUrl2}
+            placeholder='Any link you wanna save?'
+            id={`linkUrl2Field${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`linkUrl2Field${unique}`}>Link 2</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='linkName2'
+            value={linkName2}
+            placeholder='What is the link about?'
+            id={`linkName2Field${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`linkName2Field${unique}`}>Link name 2</Label>
         </div>
       </td>
       <td className='majorColumn positionColumn contentColumn'>

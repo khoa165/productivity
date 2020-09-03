@@ -44,8 +44,20 @@
     }
   }
 
+  .line-break {
+    height: 3px;
+    width: 80%;
+    background: $dark-grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .currentlyEditedRow .line-break {
+    width: 100%;
+  }
+
   .companyColumn {
-    width: 20%;
+    width: 24%;
   }
 
   .positionColumn {
@@ -65,14 +77,6 @@
       font-size: 15px;
       color: $dark-grey;
       width: 90%;
-    }
-
-    .line-break {
-      height: 3px;
-      width: 80%;
-      background: $dark-grey;
-      margin-top: 10px;
-      margin-bottom: 10px;
     }
   }
 
@@ -138,7 +142,7 @@
   }
 
   .confirmIconColumn {
-    .btn:hover ir {
+    .btn:hover i {
       color: $green !important;
     }
   }
@@ -177,6 +181,30 @@
 
       &:hover {
         color: $orange;
+      }
+    }
+  }
+
+  .companyColumn {
+    .companyName {
+      display: inline;
+    }
+
+    .btn:hover i {
+      color: $white;
+    }
+  }
+
+  .additionalLinks {
+    .line-break {
+      margin-bottom: 20px;
+    }
+
+    .btn-link {
+      color: $green;
+
+      &:hover {
+        color: $light-green !important;
       }
     }
   }

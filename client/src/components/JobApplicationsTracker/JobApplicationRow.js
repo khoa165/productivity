@@ -18,12 +18,16 @@ const JobApplicationRow = ({
     jobDescriptions,
     requiredSkills,
     deadline1,
+    linkName1,
+    linkUrl1,
+    linkName2,
+    linkUrl2,
   } = jobApplication;
 
   return (
     <tr>
       <td className='majorColumn companyColumn'>
-        <p>{company}</p>
+        <p className='companyName'>{company}</p>
         {companyWebsite && (
           <Fragment>
             <a
@@ -43,6 +47,53 @@ const JobApplicationRow = ({
             </UncontrolledTooltip>
           </Fragment>
         )}
+
+        <div className='additionalLinks'>
+          {(linkUrl1 || linkUrl2) && (
+            <Fragment>
+              <div className='line-break' />
+              <p>Additional links</p>
+            </Fragment>
+          )}
+          {linkUrl1 && (
+            <Fragment>
+              <a
+                href={linkUrl1}
+                target='_blank'
+                rel='noopener noreferrer'
+                id={`jobApplicationLink1Tooltip${unique}`}
+                className='btn btn-link'
+              >
+                {`[${linkName1 ? linkName1 : 'Link 1'}]`}
+              </a>
+              <UncontrolledTooltip
+                delay={0}
+                target={`jobApplicationLink1Tooltip${unique}`}
+              >
+                {linkUrl1}
+              </UncontrolledTooltip>
+            </Fragment>
+          )}
+          {linkUrl2 && (
+            <Fragment>
+              <a
+                href={linkUrl2}
+                target='_blank'
+                rel='noopener noreferrer'
+                id={`jobApplicationLink2Tooltip${unique}`}
+                className='btn btn-link'
+              >
+                {`[${linkName2 ? linkName2 : 'Link 2'}]`}
+              </a>
+              <UncontrolledTooltip
+                delay={0}
+                target={`jobApplicationLink2Tooltip${unique}`}
+              >
+                {linkUrl2}
+              </UncontrolledTooltip>
+            </Fragment>
+          )}
+        </div>
       </td>
       <td className='majorColumn positionColumn'>
         <p>{position}</p>
@@ -59,8 +110,12 @@ const JobApplicationRow = ({
       </td>
       <td className='majorColumn stageColumn'>
         {stage && <Badge color='danger'>{stage}</Badge>}
-        <div className='line-break' />
-        {note && <p className='jobApplicationNote'>Note: {note}</p>}
+        {note && (
+          <Fragment>
+            <div className='line-break' />
+            <p className='jobApplicationNote'>Note: {note}</p>
+          </Fragment>
+        )}
       </td>
       <td className='majorColumn deadlineColumn'>
         {deadline1 ? (
