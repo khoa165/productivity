@@ -71,6 +71,8 @@ module.exports = {
         jobApplication.requiredSkills = requiredSkills;
         jobApplication.applyDate = applyDate;
         jobApplication.interviewDate = interviewDate;
+
+        await jobApplication.save();
       } else {
         // Create new jobApplication, link author and save.
         jobApplication = new JobApplication({
