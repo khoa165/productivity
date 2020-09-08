@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import CustomAnimatedInput from '../Layout/Input';
+import { CustomInput } from '../Layout/Input';
 import { UncontrolledTooltip, Button, Label } from 'reactstrap';
 
 const BookmarkRowCurrentlyEdited = ({
@@ -40,8 +40,8 @@ const BookmarkRowCurrentlyEdited = ({
     <tr className='currentlyEditedRow'>
       <td className='majorColumn bookmarkNameColumn contentColumn'>
         <Fragment>
-          <div className='animatedInputFormGroup'>
-            <CustomAnimatedInput
+          <div className='customInputFormGroup'>
+            <CustomInput
               type='text'
               name='name'
               value={name}
@@ -50,8 +50,8 @@ const BookmarkRowCurrentlyEdited = ({
             />
             <Label for={`bookmarkNameField${unique}`}>Name</Label>
           </div>
-          <div className='animatedInputFormGroup'>
-            <CustomAnimatedInput
+          <div className='customInputFormGroup'>
+            <CustomInput
               type='text'
               name='note'
               value={note}
@@ -63,8 +63,8 @@ const BookmarkRowCurrentlyEdited = ({
         </Fragment>
       </td>
       <td className='majorColumn bookmarkLinkColumn contentColumn'>
-        <div className='animatedInputFormGroup'>
-          <CustomAnimatedInput
+        <div className='customInputFormGroup'>
+          <CustomInput
             type='text'
             name='link'
             value={link}

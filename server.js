@@ -29,6 +29,7 @@ app.use(`/${API}/profile`, require(`./${API}/routes/profile`));
 app.use(`/${API}/tasks`, require(`./${API}/routes/tasks`));
 app.use(`/${API}/tasklists`, require(`./${API}/routes/tasklists`));
 app.use(`/${API}/bookmarks`, require(`./${API}/routes/bookmarks`));
+app.use(`/${API}/jobapplications`, require(`./${API}/routes/jobapplications`));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

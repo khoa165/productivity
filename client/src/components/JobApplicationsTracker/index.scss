@@ -1,0 +1,211 @@
+@import '../../styles/variables';
+
+#jobApplicationsManagementPage {
+  .currentlyEditedRow {
+    td {
+      vertical-align: initial;
+    }
+  }
+
+  .card-tasks {
+    height: fit-content;
+  }
+
+  .card-header {
+    .title {
+      font-size: 16px;
+    }
+
+    .card-category {
+      margin-right: 20px;
+      text-transform: uppercase;
+    }
+
+    .icon-settings-gear-63 {
+      font-size: 18px;
+    }
+  }
+
+  th.header {
+    padding-left: 0;
+    padding-right: 10px;
+  }
+
+  td.majorColumn {
+    padding: 20px 0;
+
+    &.contentColumn {
+      font-size: 16px;
+      padding: 10px 30px 10px 0;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  .line-break {
+    height: 3px;
+    width: 80%;
+    background: $dark-grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .currentlyEditedRow .line-break {
+    width: 100%;
+  }
+
+  .companyColumn {
+    width: 24%;
+  }
+
+  .positionColumn {
+    width: 24%;
+  }
+
+  .stageColumn {
+    width: 24%;
+
+    .badge {
+      width: 80%;
+      padding: 10px 0;
+      font-size: 16px;
+    }
+
+    .jobApplicationNote {
+      font-size: 15px;
+      color: $dark-grey;
+      width: 90%;
+    }
+  }
+
+  .deadlineColumn {
+    width: 28%;
+  }
+
+  .rdt input {
+    padding: 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid $blue;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $dark-grey;
+      opacity: 1;
+    }
+  }
+
+  .date-picker-wrapper {
+    position: relative;
+    margin-bottom: 50px;
+
+    i {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      color: $dark-grey;
+      pointer-events: none;
+
+      &:hover {
+        color: $dark-grey;
+      }
+    }
+  }
+
+  .rdtPicker {
+    color: black;
+  }
+
+  .copyIconColumn,
+  .visitIconColumn,
+  .editIconColumn,
+  .deleteIconColumn,
+  .confirmIconColumn,
+  .cancelIconColumn {
+    width: 1.5%;
+    text-align: center;
+  }
+
+  .copyIconColumn,
+  .visitIconColumn,
+  .editIconColumn,
+  .deleteIconColumn {
+    .btn:hover i {
+      color: $white;
+    }
+  }
+
+  .confirmIconColumn {
+    .btn:hover i {
+      color: $green !important;
+    }
+  }
+
+  .cancelIconColumn {
+    padding-right: 10px;
+
+    .btn:hover i {
+      color: $red !important;
+    }
+  }
+
+  .addJobApplicationIconButton {
+    width: 100%;
+    height: 70px;
+
+    td {
+      position: relative;
+      padding: 0;
+    }
+
+    .line-break {
+      width: 100%;
+      height: 0;
+      border-bottom: 5px solid $brown;
+    }
+
+    i {
+      position: absolute;
+      top: 10px;
+      left: calc(50% - 25px - 20px);
+      font-size: 50px;
+      background: $dark-blue;
+      padding: 0 20px;
+      color: $brown;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+
+  .companyColumn {
+    .companyName {
+      display: inline;
+    }
+
+    .btn:hover i {
+      color: $white;
+    }
+  }
+
+  .additionalLinks {
+    .line-break {
+      margin-bottom: 20px;
+    }
+
+    .btn-link {
+      color: $green;
+
+      &:hover {
+        color: $light-green !important;
+      }
+    }
+  }
+}

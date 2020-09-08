@@ -1,28 +1,27 @@
 @import '../../../styles/variables/colors';
 
-.animatedInputFormGroup {
+.customInputFormGroup {
   height: 60px;
   width: 100%;
   margin: 20px 0;
   position: relative;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
+  &.textareaInput {
+    height: fit-content;
+  }
+
   label {
     position: absolute;
-    bottom: 10px;
+    top: -8px;
     left: 0;
     color: $dark-grey;
     pointer-events: none;
-    font-size: 16px !important;
-  }
-
-  input:focus ~ label,
-  input:valid ~ label {
-    transform: translateY(-35px);
     font-size: 14px !important;
   }
 
-  input {
+  input,
+  textarea {
     height: 100%;
     width: 100%;
     border: none;
@@ -35,25 +34,19 @@
     }
   }
 
+  textarea {
+    padding: 15px 0;
+  }
+
   .underline {
     position: absolute;
     bottom: 10px;
     height: 3px;
     width: 100%;
-
-    &:before {
-      position: absolute;
-      content: '';
-      height: 100%;
-      width: 100%;
-      background: $blue;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
+    background: $blue;
   }
 
-  input:focus ~ .underline:before,
-  input:valid ~ .underline:before {
-    transform: scaleX(1);
+  &.textareaInput .underline {
+    bottom: 0px;
   }
 }

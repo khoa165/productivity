@@ -1,13 +1,4 @@
-import React, { Fragment } from 'react';
-import './index.scss';
+import CustomInput from './CustomInput';
+import CustomTextarea from './CustomTextarea';
 
-const CustomAnimatedInput = (props) => {
-  return (
-    <Fragment>
-      <input {...props} />
-      <div className='underline'></div>
-    </Fragment>
-  );
-};
-
-export default CustomAnimatedInput;
+export { CustomInput, CustomTextarea };

@@ -17,6 +17,12 @@ const products = [
     illustration:
       'https://res.cloudinary.com/khoa165/image/upload/q_100/v1598878568/productivity/bookmark.png',
   },
+  {
+    route: ROUTES.JOB_APPLICATIONS_TRACKER,
+    name: 'Job applications tracker',
+    illustration:
+      'https://res.cloudinary.com/khoa165/image/upload/q_100/v1599002770/productivity/job_application.png',
+  },
 ];
 
 const Products = () => {

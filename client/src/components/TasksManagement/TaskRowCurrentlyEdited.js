@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import CustomAnimatedInput from '../Layout/Input';
+import React, { useState } from 'react';
+import { CustomInput } from '../Layout/Input';
 import ReactDatetime from 'react-datetime';
 import {
   UncontrolledDropdown,
@@ -74,28 +74,26 @@ const TaskRowCurrentlyEdited = ({
         </UncontrolledDropdown>
       </td>
       <td className='majorColumn taskNameColumn'>
-        <Fragment>
-          <div className='animatedInputFormGroup'>
-            <CustomAnimatedInput
-              type='text'
-              name='name'
-              value={name}
-              id={`taskNameField${unique}`}
-              onChange={onChange}
-            />
-            <Label for={`taskNameField${unique}`}>Name</Label>
-          </div>
-          <div className='animatedInputFormGroup'>
-            <CustomAnimatedInput
-              type='text'
-              name='note'
-              value={note}
-              id={`taskNoteField${unique}`}
-              onChange={onChange}
-            />
-            <Label for={`taskNoteField${unique}`}>Note / Description</Label>
-          </div>
-        </Fragment>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='name'
+            value={name}
+            id={`taskNameField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`taskNameField${unique}`}>Name</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='note'
+            value={note}
+            id={`taskNoteField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`taskNoteField${unique}`}>Note / Description</Label>
+        </div>
       </td>
       <td className='majorColumn taskDeadlineColumn'>
         <div className='date-picker-wrapper'>

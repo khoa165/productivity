@@ -12,7 +12,7 @@ const { check } = require('express-validator');
 const bookmarkController = require('../controllers/bookmark');
 
 // @route     POST /bookmarks
-// @desc      Create new bookmark.
+// @desc      Create/update bookmark.
 // @access    Private
 router.post(
   '/',
@@ -20,10 +20,7 @@ router.post(
     auth,
     [
       check('name', 'Bookmark name is required!').notEmpty(),
-      check('note')
-        .optional()
-        .isString()
-        .withMessage('Deadline is not a valid date!'),
+      check('note').optional().isString().withMessage('Note is not valid!'),
       check('link')
         .optional()
         .isURL()

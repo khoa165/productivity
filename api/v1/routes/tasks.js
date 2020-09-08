@@ -12,7 +12,7 @@ const { check } = require('express-validator');
 const taskController = require('../controllers/task');
 
 // @route     POST /tasks
-// @desc      Create new task.
+// @desc      Create/update task.
 // @access    Private
 router.post(
   '/',
@@ -26,17 +26,11 @@ router.post(
         .withMessage(
           'Stage must be either New, In progress, Done, Cancelled, or Postponed!'
         ),
-      check('note')
-        .optional()
-        .isString()
-        .withMessage('Deadline is not a valid date!'),
+      check('note').optional().isString().withMessage('Note is not valid!'),
       check('deadline')
         .optional()
         .isISO8601()
-        .withMessage('Deadline is not a valid date!')
-        .toDate()
-        .isAfter(new Date().toString())
-        .withMessage('Deadline must be after today!'),
+        .withMessage('Deadline is not a valid date!'),
       check('link')
         .optional()
         .isURL()
