@@ -138,7 +138,7 @@ module.exports = create = () => {
     it('should return errors for invalid date', (done) => {
       const task = {
         name: 'Keep testing!!!',
-        deadline: moment().subtract(1, 'days'),
+        deadline: '09/04',
       };
       request(app)
         .post('/tasks')
@@ -157,7 +157,7 @@ module.exports = create = () => {
             'value'
           );
           expect(res.body.errors[0].msg).to.equal(
-            'Deadline must be after today!'
+            'Deadline is not a valid date!'
           );
           expect(res.body.errors[0].param).to.equal('deadline');
           done();
