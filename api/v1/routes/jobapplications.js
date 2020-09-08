@@ -23,6 +23,15 @@ router.post(
       check('position', 'Applied position is required!').notEmpty(),
       check('stage').optional().isString().withMessage('Stage is not valid!'),
       check('note').optional().isString().withMessage('Note is not valid!'),
+      check('term').optional().isString().withMessage('Term is not valid!'),
+      check('location')
+        .optional()
+        .isString()
+        .withMessage('Location is not valid!'),
+      check('referrer')
+        .optional()
+        .isString()
+        .withMessage('Referrer is not valid!'),
 
       check('deadline1')
         .optional()

@@ -9,6 +9,7 @@ const JobApplicationRowCurrentlyEdited = ({
   clearCurrentEditedJobApplication,
   updateJobApplication,
   edit,
+  error,
 }) => {
   // Set jobApplication data.
   const [data, setData] = useState({
@@ -20,8 +21,11 @@ const JobApplicationRowCurrentlyEdited = ({
     requiredSkills: jobApplication.requiredSkills,
     stage: jobApplication.stage,
     note: jobApplication.note,
+    term: jobApplication.term,
     deadline1: jobApplication.deadline1,
     deadline2: jobApplication.deadline2,
+    location: jobApplication.location,
+    referrer: jobApplication.referrer,
 
     linkName1: jobApplication.linkName1,
     linkUrl1: jobApplication.linkUrl1,
@@ -41,8 +45,11 @@ const JobApplicationRowCurrentlyEdited = ({
     requiredSkills,
     stage,
     note,
+    term,
     deadline1,
     deadline2,
+    location,
+    referrer,
 
     linkName1,
     linkUrl1,
@@ -67,8 +74,11 @@ const JobApplicationRowCurrentlyEdited = ({
     if (requiredSkills) submittedData.requiredSkills = requiredSkills;
     if (stage) submittedData.stage = stage;
     if (note) submittedData.note = note;
+    if (term) submittedData.term = term;
     if (deadline1) submittedData.deadline1 = deadline1;
     if (deadline2) submittedData.deadline2 = deadline2;
+    if (location) submittedData.location = location;
+    if (referrer) submittedData.referrer = referrer;
 
     if (linkName1) submittedData.linkName1 = linkName1;
     if (linkUrl1) submittedData.linkUrl1 = linkUrl1;
@@ -82,6 +92,11 @@ const JobApplicationRowCurrentlyEdited = ({
       submittedData.id = id;
     }
     updateJobApplication(submittedData, edit);
+    if (!edit && !error) {
+      console.log(error);
+      console.log('should clear');
+      // clearCurrentEditedJobApplication(id);
+    }
   };
 
   return (
@@ -164,6 +179,37 @@ const JobApplicationRowCurrentlyEdited = ({
             onChange={onChange}
           />
           <Label for={`jobPositionField${unique}`}>Position</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='term'
+            value={term}
+            placeholder='e.g. Summer 2021'
+            id={`jobTermField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`jobTermField${unique}`}>Term</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='location'
+            value={location}
+            id={`jobLocationField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`jobLocationField${unique}`}>Location</Label>
+        </div>
+        <div className='customInputFormGroup'>
+          <CustomInput
+            type='text'
+            name='referrer'
+            value={referrer}
+            id={`jobReferrerField${unique}`}
+            onChange={onChange}
+          />
+          <Label for={`jobReferrerField${unique}`}>Referrer</Label>
         </div>
         <div className='customInputFormGroup textareaInput'>
           <CustomTextarea

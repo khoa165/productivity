@@ -16,10 +16,12 @@ const JobApplicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  location: String,
   stage: String,
   deadline1: Date,
   deadline2: Date,
   note: String,
+  term: String,
 
   companyWebsite: String,
   jobDescriptions: String,
@@ -39,6 +41,8 @@ const JobApplicationSchema = new mongoose.Schema({
   linkUrl2: String,
   linkName3: String,
   linkUrl3: String,
+
+  referrer: String,
 
   // Job application tracking created.
   created_at: {

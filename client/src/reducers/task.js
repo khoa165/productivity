@@ -7,6 +7,7 @@ import {
   CLEAR_CURRENT_EDITED_TASK,
   ADD_NEW_TASK_PLACEHOLDER,
   REMOVE_TASK_PLACEHOLDER,
+  TASK_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   currentEditedTask: null,
   loading: true,
   taskPlaceholders: [],
+  error: false,
 };
 
 export default function (state = initialState, action) {
@@ -64,6 +66,11 @@ export default function (state = initialState, action) {
         taskPlaceholders: state.taskPlaceholders.filter(
           (placeholder) => placeholder !== payload
         ),
+      };
+    case TASK_ERROR:
+      return {
+        ...state,
+        error: true,
       };
     default:
       // Do nothing.

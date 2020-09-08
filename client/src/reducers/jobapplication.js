@@ -3,10 +3,11 @@ import {
   ADD_NEW_JOB_APPLICATION,
   UPDATE_JOB_APPLICATION,
   DELETE_JOB_APPLICATION,
-  SET_CURRENT_EDITED_JOB_APPLICATION,
-  CLEAR_CURRENT_EDITED_JOB_APPLICATION,
-  ADD_NEW_JOB_APPLICATION_PLACEHOLDER,
-  REMOVE_JOB_APPLICATION_PLACEHOLDER,
+  SET_CURRENT_EDITED_JA,
+  CLEAR_CURRENT_EDITED_JA,
+  ADD_NEW_JA_PLACEHOLDER,
+  REMOVE_JA_PLACEHOLDER,
+  JOB_APPLICATION_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   currentEditedJobApplication: null,
   loading: true,
   jobApplicationPlaceholders: [],
+  error: false,
 };
 
 export default function (state = initialState, action) {
@@ -45,17 +47,17 @@ export default function (state = initialState, action) {
           (jobapplication) => jobapplication._id !== payload
         ),
       };
-    case SET_CURRENT_EDITED_JOB_APPLICATION:
+    case SET_CURRENT_EDITED_JA:
       return {
         ...state,
         currentEditedJobApplication: payload,
       };
-    case CLEAR_CURRENT_EDITED_JOB_APPLICATION:
+    case CLEAR_CURRENT_EDITED_JA:
       return {
         ...state,
         currentEditedJobApplication: null,
       };
-    case ADD_NEW_JOB_APPLICATION_PLACEHOLDER:
+    case ADD_NEW_JA_PLACEHOLDER:
       return {
         ...state,
         jobApplicationPlaceholders: [
@@ -63,12 +65,17 @@ export default function (state = initialState, action) {
           payload,
         ],
       };
-    case REMOVE_JOB_APPLICATION_PLACEHOLDER:
+    case REMOVE_JA_PLACEHOLDER:
       return {
         ...state,
         jobApplicationPlaceholders: state.jobApplicationPlaceholders.filter(
           (placeholder) => placeholder !== payload
         ),
+      };
+    case JOB_APPLICATION_ERROR:
+      return {
+        ...state,
+        error: true,
       };
     default:
       // Do nothing.

@@ -59,7 +59,7 @@ const PasswordForgetForm = ({ firebase, pathname }) => {
         </FormGroup>
         <Input
           type='submit'
-          value='Retrieve your Survivor fan identity'
+          value='Reset your account password'
           className='btn btn-outline-warning btn-block submitFormButton'
         />
       </Form>

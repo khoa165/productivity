@@ -17,7 +17,9 @@ module.exports = {
       id,
       company,
       position,
+      location,
       stage,
+      term,
       deadline1,
       deadline2,
       linkName1,
@@ -31,6 +33,7 @@ module.exports = {
       jobDescriptions,
       requiredSkills,
       applyDate,
+      referrer,
       interviewDate,
     } = req.body;
 
@@ -53,8 +56,10 @@ module.exports = {
 
         jobApplication.company = company;
         jobApplication.position = position;
+        jobApplication.location = location;
         jobApplication.stage = stage;
         jobApplication.note = note;
+        jobApplication.term = term;
 
         jobApplication.deadline1 = deadline1;
         jobApplication.deadline2 = deadline2;
@@ -71,6 +76,7 @@ module.exports = {
         jobApplication.requiredSkills = requiredSkills;
         jobApplication.applyDate = applyDate;
         jobApplication.interviewDate = interviewDate;
+        jobApplication.referrer = referrer;
 
         await jobApplication.save();
       } else {
@@ -78,21 +84,27 @@ module.exports = {
         jobApplication = new JobApplication({
           company,
           position,
+          location,
           stage,
+          note,
+          term,
+
           deadline1,
           deadline2,
+
           linkName1,
           linkUrl1,
           linkName2,
           linkUrl2,
           linkName3,
           linkUrl3,
-          note,
+
           companyWebsite,
           jobDescriptions,
           requiredSkills,
           applyDate,
           interviewDate,
+          referrer,
         });
         jobApplication.author = req.user.id;
         await jobApplication.save();

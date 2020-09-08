@@ -18,6 +18,7 @@ class JobApplicationsTable extends SortingTable {
       deleteJobApplication,
       addNewJobApplicationPlaceholder,
       removeJobApplicationPlaceholder,
+      error,
     } = this.props;
     const { bodyData, column } = this.state;
 
@@ -86,6 +87,7 @@ class JobApplicationsTable extends SortingTable {
                 }
                 updateJobApplication={updateJobApplication}
                 edit={false}
+                error={error}
               />
             );
           })}
@@ -118,7 +120,6 @@ JobApplicationsTable.propTypes = {
   tbody: PropTypes.arrayOf(
     PropTypes.shape({
       author: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
       note: PropTypes.string,
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,

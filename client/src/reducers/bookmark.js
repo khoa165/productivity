@@ -7,6 +7,7 @@ import {
   CLEAR_CURRENT_EDITED_BOOKMARK,
   ADD_NEW_BOOKMARK_PLACEHOLDER,
   REMOVE_BOOKMARK_PLACEHOLDER,
+  BOOKMARK_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   currentEditedBookmark: null,
   loading: true,
   bookmarkPlaceholders: [],
+  error: false,
 };
 
 export default function (state = initialState, action) {
@@ -66,6 +68,11 @@ export default function (state = initialState, action) {
         bookmarkPlaceholders: state.bookmarkPlaceholders.filter(
           (placeholder) => placeholder !== payload
         ),
+      };
+    case BOOKMARK_ERROR:
+      return {
+        ...state,
+        error: true,
       };
     default:
       // Do nothing.

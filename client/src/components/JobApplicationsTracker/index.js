@@ -31,11 +31,12 @@ const JobApplicationsManagement = ({
   clearCurrentEditedJobApplication,
   addNewJobApplicationPlaceholder,
   removeJobApplicationPlaceholder,
-  jobApplication: {
+  jobApplicationState: {
     jobApplications,
     currentEditedJobApplication,
     loading,
     jobApplicationPlaceholders,
+    error,
   },
 }) => {
   useEffect(() => {
@@ -101,6 +102,7 @@ const JobApplicationsManagement = ({
               deleteJobApplication={deleteJobApplication}
               addNewJobApplicationPlaceholder={addNewJobApplicationPlaceholder}
               removeJobApplicationPlaceholder={removeJobApplicationPlaceholder}
+              error={error}
             />
           )}
         </CardBody>
@@ -117,11 +119,11 @@ JobApplicationsManagement.propTypes = {
   clearCurrentEditedJobApplication: PropTypes.func.isRequired,
   addNewJobApplicationPlaceholder: PropTypes.func.isRequired,
   removeJobApplicationPlaceholder: PropTypes.func.isRequired,
-  jobApplication: PropTypes.object.isRequired,
+  jobApplicationState: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  jobApplication: state.jobapplication,
+  jobApplicationState: state.jobapplication,
 });
 
 const mapFunctionsToProps = {

@@ -8,6 +8,7 @@ import {
   CLEAR_CURRENT_EDITED_TASK,
   ADD_NEW_TASK_PLACEHOLDER,
   REMOVE_TASK_PLACEHOLDER,
+  TASK_ERROR,
 } from './types';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
@@ -73,6 +74,8 @@ export const updateTask = (formData, edit = false) => async (dispatch) => {
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
+
+    dispatch({ type: TASK_ERROR });
   }
 };
 

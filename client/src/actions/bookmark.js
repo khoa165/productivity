@@ -8,6 +8,7 @@ import {
   CLEAR_CURRENT_EDITED_BOOKMARK,
   ADD_NEW_BOOKMARK_PLACEHOLDER,
   REMOVE_BOOKMARK_PLACEHOLDER,
+  BOOKMARK_ERROR,
 } from './types';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
@@ -75,6 +76,8 @@ export const updateBookmark = (formData, edit = false) => async (dispatch) => {
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
+
+    dispatch({ type: BOOKMARK_ERROR });
   }
 };
 

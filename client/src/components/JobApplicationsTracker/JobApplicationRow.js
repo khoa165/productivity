@@ -14,6 +14,8 @@ const JobApplicationRow = ({
     position,
     note,
     stage,
+    location,
+    referrer,
     companyWebsite,
     jobDescriptions,
     requiredSkills,
@@ -97,6 +99,12 @@ const JobApplicationRow = ({
       </td>
       <td className='majorColumn positionColumn'>
         <p>{position}</p>
+        {location && (
+          <p className='text-muted jobApplicationDescription'>{location}</p>
+        )}
+        {referrer && (
+          <p className='text-muted jobApplicationDescription'>({referrer})</p>
+        )}
         {jobDescriptions && (
           <p className='text-muted jobApplicationDescription'>
             {jobDescriptions}

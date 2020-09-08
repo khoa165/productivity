@@ -4,10 +4,11 @@ import {
   ADD_NEW_JOB_APPLICATION,
   UPDATE_JOB_APPLICATION,
   DELETE_JOB_APPLICATION,
-  SET_CURRENT_EDITED_JOB_APPLICATION,
-  CLEAR_CURRENT_EDITED_JOB_APPLICATION,
-  ADD_NEW_JOB_APPLICATION_PLACEHOLDER,
-  REMOVE_JOB_APPLICATION_PLACEHOLDER,
+  SET_CURRENT_EDITED_JA,
+  CLEAR_CURRENT_EDITED_JA,
+  ADD_NEW_JA_PLACEHOLDER,
+  REMOVE_JA_PLACEHOLDER,
+  JOB_APPLICATION_ERROR,
 } from './types';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
@@ -77,6 +78,9 @@ export const updateJobApplication = (formData, edit = false) => async (
     if (errors) {
       errors.forEach((error) => toast.error(error.msg));
     }
+
+    console.log('about to dispatch error');
+    dispatch({ type: JOB_APPLICATION_ERROR });
   }
 };
 
@@ -86,7 +90,7 @@ export const setCurrentEditedJobApplication = (jobapplication) => async (
 ) => {
   // Call reducer to set job application as currently edited.
   dispatch({
-    type: SET_CURRENT_EDITED_JOB_APPLICATION,
+    type: SET_CURRENT_EDITED_JA,
     payload: jobapplication,
   });
 };
@@ -95,7 +99,7 @@ export const setCurrentEditedJobApplication = (jobapplication) => async (
 export const clearCurrentEditedJobApplication = () => async (dispatch) => {
   // Call reducer to indicate job application as not currently edited.
   dispatch({
-    type: CLEAR_CURRENT_EDITED_JOB_APPLICATION,
+    type: CLEAR_CURRENT_EDITED_JA,
   });
 };
 
@@ -105,7 +109,7 @@ export const addNewJobApplicationPlaceholder = () => async (dispatch) => {
 
   // Call reducer to add new job application placeholder.
   dispatch({
-    type: ADD_NEW_JOB_APPLICATION_PLACEHOLDER,
+    type: ADD_NEW_JA_PLACEHOLDER,
     payload: id,
   });
 };
@@ -116,7 +120,7 @@ export const removeJobApplicationPlaceholder = (placeholderId) => async (
 ) => {
   // Call reducer to remove the job application placeholder.
   dispatch({
-    type: REMOVE_JOB_APPLICATION_PLACEHOLDER,
+    type: REMOVE_JA_PLACEHOLDER,
     payload: placeholderId,
   });
 };

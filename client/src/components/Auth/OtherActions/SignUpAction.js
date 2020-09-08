@@ -4,7 +4,7 @@ import * as ROUTES from '../../../constants/routes';
 
 const SignUpAction = ({ pathname }) => (
   <div className='other-account-action'>
-    <p>Are you a new Survivor fan?</p>
+    <p>Are you a new user?</p>
     <Link
       to={{
         pathname: pathname,
